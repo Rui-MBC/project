@@ -19,14 +19,24 @@ public class GameInstance {
 		return deck.get_cards(nr_cards);
 	}
 	
-	public Boolean[] advice(ArrayList<Card> cards_analyze)
+	public boolean[] advice(ArrayList<Card> cards_analyze)
 	{
 		return 	rules.advice(cards_analyze);
 	}
 	
-	public Boolean[] statistics(ArrayList<Card> cards_analyze)
+	public boolean[] statistics(ArrayList<Card> cards_analyze)
 	{
 		return 	rules.statistics(cards_analyze);
+	}
+	
+	public string hand_result(ArrayList<Card> cards_analyze)
+	{
+		return 	rules.play_hand;
+	}
+	
+	public int bet_result(ArrayList<Card> cards_analyze)
+	{
+		return 	rules.play_hand;
 	}
 
 }

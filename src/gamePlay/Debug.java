@@ -28,9 +28,13 @@ public class Debug implements Game {
 		int i = 0;
 		int j = 0;
 		int aux = 0;
-		Boolean hold_aux[] = new Boolean[5];
+		
+		boolean hold_aux[] = new boolean[5];
 		int hold_amount = 0;
 		int hold_flag = -1;
+		
+		String result_aux;
+		
 		File file_cmd = new File("/Users/cemar/Main/IST/POO/Proj/DebugMode/cmd-file.txt");
 		Scanner sc_cmd = new Scanner(file_cmd);
 
@@ -69,14 +73,14 @@ public class Debug implements Game {
 			
 			else if (parts[i].contains("h"))
 			{
-				Arrays.fill(hold_aux, Boolean.FALSE); //reset hold array
+				Arrays.fill(hold_aux, false); //reset hold array
 				//System.out.println("Hold");
 				for (j=1; j < 6; j++)
 				{
 					if(i+j <parts.length && parts[i+j].matches("^[0-9]+$"))
 					{
 						//System.out.println(parts[i+j]);
-						hold_aux[Integer.parseInt(parts[i+j])-1] = Boolean.TRUE;
+						hold_aux[Integer.parseInt(parts[i+j])-1] = false;
 						hold_amount++;
 					}
 					else
@@ -88,6 +92,19 @@ public class Debug implements Game {
 				
 				ArrayList<Card> rcvd_cards = instance.deal(5-hold_amount);
 				player.setHand(rcvd_cards,hold_aux);
+				result_aux = instance.hand_result(player.getHand());
+				
+				if (result_aux == NULL)
+				{
+					System.out.println("player loses and his credit is "+player.credit());
+				}
+					
+				else
+				{
+					System.out.println("player ties");
+				}
+					
+					
 				
 				//hold_aux[] = 1 if the player wants to hold, and = 0 if not
 				//call hold method

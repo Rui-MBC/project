@@ -27,6 +27,10 @@ public class Player {
 		return credit;
 	}
 	
+	public void addcredit(int creditToAdd) {
+		credit += creditToAdd;
+	}
+	
 	public ArrayList<Card> getHand() {
 		return hand._getHand();
 	}
@@ -35,7 +39,7 @@ public class Player {
 		hand._setHand(cards);
 	}
 	
-	public void setHand(ArrayList<Card> cards, Boolean hold_index[]) {
+	public void setHand(ArrayList<Card> cards, boolean hold_index[]) {
 		hand._setHand(cards, hold_index);
 	}
 

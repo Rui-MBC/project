@@ -25,7 +25,7 @@ public class Hand {
 		}
 	}
 	
-	public void _setHand(ArrayList<Card> cards,Boolean hold_bool[]) {
+	public void _setHand(ArrayList<Card> cards,boolean hold_bool[]) {
 		
 		for (int i=0;i<5;i++)
 		{
