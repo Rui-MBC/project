@@ -17,6 +17,9 @@ public class Debug implements Game {
 		player = new Player(Integer.parseInt(args[1]));
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -25,7 +28,9 @@ public class Debug implements Game {
 		int i = 0;
 		int j = 0;
 		int aux = 0;
-		int hold_aux[] = new int[5];
+		Boolean hold_aux[] = new Boolean[5];
+		int hold_amount = 0;
+		int hold_flag = -1;
 		File file_cmd = new File("/Users/cemar/Main/IST/POO/Proj/DebugMode/cmd-file.txt");
 		Scanner sc_cmd = new Scanner(file_cmd);
 
@@ -58,19 +63,21 @@ public class Debug implements Game {
 			
 			else if (parts[i].contains("d"))
 			{
-				ArrayList<Card> hand = instance.deal(5);
+				ArrayList<Card> rcvd_cards = instance.deal(5);
+				player.setHand(rcvd_cards);
 			}
 			
 			else if (parts[i].contains("h"))
 			{
-				Arrays.fill(hold_aux, 0); //reset hold array
+				Arrays.fill(hold_aux, Boolean.FALSE); //reset hold array
 				//System.out.println("Hold");
 				for (j=1; j < 6; j++)
 				{
 					if(i+j <parts.length && parts[i+j].matches("^[0-9]+$"))
 					{
 						//System.out.println(parts[i+j]);
-						hold_aux[Integer.parseInt(parts[i+j])-1] = 1;
+						hold_aux[Integer.parseInt(parts[i+j])-1] = Boolean.TRUE;
+						hold_amount++;
 					}
 					else
 					{
@@ -79,6 +86,9 @@ public class Debug implements Game {
 					}
 				}
 				
+				ArrayList<Card> rcvd_cards = instance.deal(5-hold_amount);
+				player.setHand(rcvd_cards,hold_aux);
+				
 				//hold_aux[] = 1 if the player wants to hold, and = 0 if not
 				//call hold method
 			}
@@ -86,11 +96,41 @@ public class Debug implements Game {
 			else if (parts[i].contains("a"))
 			{
 				//call advice method
+				hold_aux = instance.advice(player.getHand());
+				hold_flag = 0;
+				for(i=0; i<5; i++)
+				{
+					if(hold_aux[i])
+					{
+						hold_flag = 1;
+						break;
+					}
+				}
+				
+				if(hold_flag == 0)
+				{
+					System.out.println("Discard all cards");
+				}
+				else
+				{
+					System.out.print("player should hold cards ");
+					for(i=0; i<5; i++)
+					{
+						if(hold_aux[i])
+						{
+							System.out.print((i+1)+" ");
+						}
+					}
+					
+					System.out.print("\n");
+				}
+
 			}
 			
 			else if (parts[i].contains("s"))
 			{
 				//call statistics method
+				instance.statistics();
 			}
 		}
 		sc_cmd.close();

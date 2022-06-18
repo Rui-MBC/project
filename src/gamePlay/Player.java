@@ -1,11 +1,11 @@
 package gamePlay;
 import java.util.ArrayList;
-
 import cards.*;
 public class Player {
 	
 	private int credit;
 	private int last_bet;
+	private Hand hand;
 
 
 	public Player(int _credit) {
@@ -25,6 +25,18 @@ public class Player {
 	
 	public int credit() {
 		return credit;
+	}
+	
+	public ArrayList<Card> getHand() {
+		return hand._getHand();
+	}
+	
+	public void setHand(ArrayList<Card> cards) {
+		hand._setHand(cards);
+	}
+	
+	public void setHand(ArrayList<Card> cards, Boolean hold_index[]) {
+		hand._setHand(cards, hold_index);
 	}
 
 

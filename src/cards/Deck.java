@@ -7,7 +7,8 @@ import java.util.Collections;
 public class Deck {
 
 
-	private ArrayList<Card> deck = new ArrayList<Card>(); 
+	private ArrayList<Card> deck = new ArrayList<Card>();
+	int deck_pointer = 0;
 	
 	public Deck(String fileName) {
 		
@@ -28,6 +29,7 @@ public class Deck {
 		for (int i = 0; i < (int) file.length(); i=i+3) {
 			deck.add(new Card(ch[i], ch[i+1]));
 		}
+		
 
 		/*
 		deck.add(new Card('2', 'H'));
@@ -95,6 +97,15 @@ public class Deck {
 	@Override
 	public String toString() {
 		return ""+deck;
+	}
+	
+	public ArrayList<Card> get_cards(int nr_cards)
+	{
+		ArrayList<Card> get_aux = new ArrayList<Card>();
+		for (int i = 0; i < nr_cards; i++ )
+		{
+			deck.get(deck_pointer+i);
+		}
 	}
 	
 	
