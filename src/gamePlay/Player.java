@@ -36,6 +36,10 @@ public class Player {
 		return hand._getHand();
 	}
 	
+	public Hand getHandObject() {
+		return hand;
+	}
+	
 	public void setHand(ArrayList<Card> cards) {
 		hand._setHand(cards);
 	}

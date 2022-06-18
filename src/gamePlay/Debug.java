@@ -28,6 +28,7 @@ public class Debug implements Game {
 		int i = 0;
 		int j = 0;
 		int aux = 0;
+		String lastCmd = "z";
 		
 		boolean hold_aux[] = new boolean[5];
 		int hold_amount = 0;
@@ -45,26 +46,37 @@ public class Debug implements Game {
 		
 		for ( i = 0; i < parts.length; i++)
 		{
+			
 			if (parts[i].contains("b"))
 			{
-				
-				if(parts[i+1].matches("^[0-9]+$"))
+				if (lastCmd.contains("z") || lastCmd.contains("d"))
 				{
-					aux = Integer.parseInt(parts[i+1]);
-					if(aux <= 5) {
-						player.bet(aux);
-					}
-					else {
-						System.out.println("b: illegal amount");
-					}
-						
+					System.out.println("b: illegal command");
 				}
+				
 				else
 				{
-					player.bet();
+					if(parts[i+1].matches("^[0-9]+$"))
+					{
+						aux = Integer.parseInt(parts[i+1]);
+						if(aux <= 5) {
+							player.bet(aux);
+							player.printBet();
+						}
+						else {
+							System.out.println("b: illegal amount");
+						}
+							
+					}
+					else
+					{
+						player.bet();
+						player.printBet();
+						
+					}
+					lastCmd = "b";
 				}
-				
-				player.printBet();
+
 			}
 					
 			else if (parts[i].contains("$"))
@@ -75,50 +87,65 @@ public class Debug implements Game {
 			
 			else if (parts[i].contains("d"))
 			{
-				ArrayList<Card> rcvd_cards = instance.deal(5);
-				player.setHand(rcvd_cards);
-				player.printHand();
+				if (!lastCmd.contains("z") || !lastCmd.contains("b"))
+				{
+					System.out.println("d: illegal command");
+				}
+				else 
+				{
+					ArrayList<Card> rcvd_cards = instance.deal(5);
+					player.setHand(rcvd_cards);
+					player.printHand();
+					lastCmd = "d";
+				}
+
 			}
 			
 			else if (parts[i].contains("h"))
 			{
-				Arrays.fill(hold_aux, false); //reset hold array
-				//System.out.println("Hold");
-				for (j=1; j < 6; j++)
+				if (!lastCmd.contains("d"))
 				{
-					if(i+j <parts.length && parts[i+j].matches("^[0-9]+$"))
-					{
-						//System.out.println(parts[i+j]);
-						hold_aux[Integer.parseInt(parts[i+j])-1] = false;
-						hold_amount++;
-					}
-					else
-					{
-						//System.out.println(Arrays.toString(hold_aux));
-						break;
-					}
+					System.out.println("h: illegal command");
 				}
 				
-				ArrayList<Card> rcvd_cards = instance.deal(5-hold_amount);
-				player.setHand(rcvd_cards,hold_aux);
-				player.printHand();
-				result_aux = instance.getHandValue(player.getHand());
-				
-				if (result_aux[1] == null)
-				{
-					System.out.println("player loses and his credit is "+player.credit());
-				}
-					
 				else
 				{
-					player.addcredit(Integer.parseInt(result_aux[0]));
-					System.out.println("player wins with a" + result_aux[1] + " and his credit is" + player.credit());
+					Arrays.fill(hold_aux, false); //reset hold array
+					//System.out.println("Hold");
+					for (j=1; j < 6; j++)
+					{
+						if(i+j <parts.length && parts[i+j].matches("^[0-9]+$"))
+						{
+							//System.out.println(parts[i+j]);
+							hold_aux[Integer.parseInt(parts[i+j])-1] = false;
+							hold_amount++;
+						}
+						else
+						{
+							//System.out.println(Arrays.toString(hold_aux));
+							break;
+						}
+					}
+					
+					ArrayList<Card> rcvd_cards = instance.deal(5-hold_amount);
+					player.setHand(rcvd_cards,hold_aux);
+					player.printHand();
+					result_aux = instance.getHandValue(player.getHandObject());
+					
+					if (result_aux[1] == null)
+					{
+						System.out.println("player loses and his credit is "+player.credit());
+					}
+						
+					else
+					{
+						player.addcredit(Integer.parseInt(result_aux[0]));
+						System.out.println("player wins with a" + result_aux[1] + " and his credit is" + player.credit());
+					}
+						
+					lastCmd = "d";
 				}
-					
-					
 				
-				//hold_aux[] = 1 if the player wants to hold, and = 0 if not
-				//call hold method
 			}
 			
 			else if (parts[i].contains("a"))
