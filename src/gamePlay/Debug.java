@@ -41,7 +41,7 @@ public class Debug implements Game {
 
 		//Cmd file
 		curr_line = sc_cmd.nextLine();
-		parts = curr_line.split(" ");
+		parts = curr_line.split("[ \n\t]");
 		
 		
 		for ( i = 0; i < parts.length; i++)

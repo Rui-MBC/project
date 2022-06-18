@@ -29,10 +29,10 @@ public class GameInstance {
 		return 	rules.statistics(cards_analyze);
 	}
 	
-	public String[] getHandValue(ArrayList<Card> cards_analyze)
+	public String[] getHandValue(Hand _hand)
 	{
 		
-		return 	rules.getHandValue();
+		return 	rules.getHandValue(_hand);
 	}
 	
 	public int bet_result(ArrayList<Card> cards_analyze)
