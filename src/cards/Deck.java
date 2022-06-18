@@ -104,8 +104,10 @@ public class Deck {
 		ArrayList<Card> get_aux = new ArrayList<Card>();
 		for (int i = 0; i < nr_cards; i++ )
 		{
-			deck.get(deck_pointer+i);
+			get_aux.set(i, deck.get(deck_pointer+i));
 		}
+		
+		return get_aux;
 	}
 	
 	

@@ -23,5 +23,10 @@ public class GameInstance {
 	{
 		return 	rules.advice(cards_analyze);
 	}
+	
+	public Boolean[] statistics(ArrayList<Card> cards_analyze)
+	{
+		return 	rules.statistics(cards_analyze);
+	}
 
 }
