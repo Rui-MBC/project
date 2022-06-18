@@ -10,11 +10,12 @@ import gamePlay.*;
 public class Main {
 	
 	public static void main(String[] args) {
-	
-		Game game = new Game(args);	
 		
-		for (int i = 0 ; i < (int) args.length; i++){
-			System.out.println("args "+i+" is "+args[i]);
+		if(args[0].equals( "-s")) {
+
+		}
+		if(args[0].equals( "-d")) {
+			Debug game = new Debug(args);	
 		}
 		
 		//game.run();
