@@ -187,6 +187,11 @@ public class Debug implements Game {
 				//call statistics method
 				instance.statistics();
 			}
+			
+			else if (parts[i].contains(".*[a-zA-Z].*"))
+			{
+				System.out.println(parts[i].toString()+": invalid command");
+			}
 		}
 		sc_cmd.close();
 		
