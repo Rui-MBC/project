@@ -31,7 +31,7 @@ public class Card {
 	}
 	
 	public String toString() {
-		return "suit is "+suit+" and value is "+ value+"\n";
+		return ""+value+suit;
 	}
 
 

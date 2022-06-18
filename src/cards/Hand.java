@@ -36,5 +36,14 @@ public class Hand {
 				
 		}
 	}
+	
+	public String toString() {
+		
+		String hand = null;
+		for(int i=0; i<5;i++ ) {
+			hand += (handCards.get(i).toString()+" ");
+		}
+		return hand;
+	} 
 
 }

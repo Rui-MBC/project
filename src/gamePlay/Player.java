@@ -20,6 +20,7 @@ public class Player {
 	}
 	
 	public void bet(int value) {
+		last_bet = value;
 		credit -= value;
 	}
 	
@@ -41,6 +42,14 @@ public class Player {
 	
 	public void setHand(ArrayList<Card> cards, boolean hold_index[]) {
 		hand._setHand(cards, hold_index);
+	}
+	
+	public void printHand() {
+		System.out.print("player's hand " + hand.toString());	
+	}
+	
+	public void printBet() {
+		System.out.println("player is betting "+last_bet);
 	}
 
 

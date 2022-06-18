@@ -6,7 +6,7 @@ import cards.*;
 public class GameInstance {
 	
 	Deck deck;
-	Rules rules;
+	GameRules rules;
 	
 	public GameInstance(String deckfile) {
 		deck = new Deck(deckfile);
@@ -29,9 +29,10 @@ public class GameInstance {
 		return 	rules.statistics(cards_analyze);
 	}
 	
-	public string hand_result(ArrayList<Card> cards_analyze)
+	public String[] getHandValue(ArrayList<Card> cards_analyze)
 	{
-		return 	rules.play_hand;
+		
+		return 	rules.getHandValue();
 	}
 	
 	public int bet_result(ArrayList<Card> cards_analyze)

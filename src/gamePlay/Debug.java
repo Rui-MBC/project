@@ -33,7 +33,7 @@ public class Debug implements Game {
 		int hold_amount = 0;
 		int hold_flag = -1;
 		
-		String result_aux;
+		String[] result_aux;
 		
 		File file_cmd = new File("/Users/cemar/Main/IST/POO/Proj/DebugMode/cmd-file.txt");
 		Scanner sc_cmd = new Scanner(file_cmd);
@@ -51,12 +51,20 @@ public class Debug implements Game {
 				if(parts[i+1].matches("^[0-9]+$"))
 				{
 					aux = Integer.parseInt(parts[i+1]);
-					player.bet(aux);
+					if(aux <= 5) {
+						player.bet(aux);
+					}
+					else {
+						System.out.println("b: illegal amount");
+					}
+						
 				}
 				else
 				{
 					player.bet();
 				}
+				
+				player.printBet();
 			}
 					
 			else if (parts[i].contains("$"))
@@ -69,6 +77,7 @@ public class Debug implements Game {
 			{
 				ArrayList<Card> rcvd_cards = instance.deal(5);
 				player.setHand(rcvd_cards);
+				player.printHand();
 			}
 			
 			else if (parts[i].contains("h"))
@@ -92,16 +101,18 @@ public class Debug implements Game {
 				
 				ArrayList<Card> rcvd_cards = instance.deal(5-hold_amount);
 				player.setHand(rcvd_cards,hold_aux);
-				result_aux = instance.hand_result(player.getHand());
+				player.printHand();
+				result_aux = instance.getHandValue(player.getHand());
 				
-				if (result_aux == NULL)
+				if (result_aux[1] == null)
 				{
 					System.out.println("player loses and his credit is "+player.credit());
 				}
 					
 				else
 				{
-					System.out.println("player ties");
+					player.addcredit(Integer.parseInt(result_aux[0]));
+					System.out.println("player wins with a" + result_aux[1] + " and his credit is" + player.credit());
 				}
 					
 					
