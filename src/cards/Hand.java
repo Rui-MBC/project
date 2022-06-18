@@ -45,5 +45,9 @@ public class Hand {
 		}
 		return hand;
 	} 
-
+	
+	public Card get(int i)
+	{
+		return handCards.get(i);
+	}
 }
