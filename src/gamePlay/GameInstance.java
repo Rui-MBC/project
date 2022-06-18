@@ -39,5 +39,9 @@ public class GameInstance {
 	{
 		return 	rules.play_hand;
 	}
+	
+	public void prepareRound() {
+		deck.reset();
+	}
 
 }

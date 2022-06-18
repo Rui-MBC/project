@@ -107,9 +107,14 @@ public class Deck {
 			get_aux.set(i, deck.get(deck_pointer+i));
 		}
 		
+		deck_pointer += nr_cards;
+		
 		return get_aux;
 	}
 	
-	
+	public void reset() {
+		deck_pointer = 0;
+		shuffle();
+	}
 
 }
