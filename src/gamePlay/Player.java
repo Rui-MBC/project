@@ -53,7 +53,7 @@ public class Player {
 	}
 	
 	public void printBet() {
-		System.out.println("player is betting "+last_bet);
+			System.out.println("player is betting "+last_bet);
 	}
 
 

@@ -43,7 +43,6 @@ public class Debug implements Game {
 		curr_line = sc_cmd.nextLine();
 		parts = curr_line.split("[ \n\t]");
 		
-		
 		for ( i = 0; i < parts.length; i++)
 		{
 			
@@ -59,7 +58,7 @@ public class Debug implements Game {
 					if(parts[i+1].matches("^[0-9]+$"))
 					{
 						aux = Integer.parseInt(parts[i+1]);
-						if(aux <= 5) {
+						if(0 < aux && aux <= 5) {
 							player.bet(aux);
 							player.printBet();
 						}
