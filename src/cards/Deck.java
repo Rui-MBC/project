@@ -12,7 +12,7 @@ public class Deck {
 	
 	public Deck(String fileName) {
 		System.out.println(fileName);
-		File file = new File( "/home/ruimbc/PooWorkSpace/project/Decks/"+ fileName);
+		File file = new File( "../Decks/"+ fileName);
 		char[] ch  = null;
 		try (FileReader fr = new FileReader(file))
         {

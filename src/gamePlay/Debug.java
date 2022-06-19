@@ -39,7 +39,7 @@ public class Debug implements Game {
 		
 		String[] result_aux;
 		
-		File file_cmd = new File( "/home/ruimbc/PooWorkSpace/project/Commands/" + commandFileName);
+		File file_cmd = new File( "../Commands/" + commandFileName);
 		Scanner sc_cmd = null;
 		try {
 			sc_cmd = new Scanner(file_cmd);
