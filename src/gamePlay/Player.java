@@ -15,6 +15,9 @@ public class Player {
 		last_bet = 5;
 
 	}
+	public int getBet() {
+		return last_bet;
+	}
 	public void bet() {
 		credit -= last_bet;
 	}

@@ -52,17 +52,14 @@ public class TenSevenDoubleBonus implements GameRules {
 		initialCredit = _initialCredit;
 	}
 	
-	
-	
-	
-	
-
 	public boolean[] advice(Hand hand) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 
-	public String[]  getHandvalue(Hand hand, int bet) {
+	public String[]  getHandValue(Hand hand, int bet) {
 		
 		String[] returnArray= new String[2];
 		
@@ -116,8 +113,7 @@ public class TenSevenDoubleBonus implements GameRules {
 		}
 		return returnArray;
 	}
-	
-	
+		
 	@Override
 	public String getStatistics(int credit) {
 
@@ -173,6 +169,16 @@ public class TenSevenDoubleBonus implements GameRules {
 	}
 	
 	private boolean[] straightFlush(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+
+		if(straight(hand)[5] && flush(hand)[5]) {
+			Arrays.fill(returnArray,true) ;
+
+		}
+		else Arrays.fill(returnArray,false) ;
+		
+		return returnArray;
+
 		
 	}
 	
@@ -194,33 +200,214 @@ public class TenSevenDoubleBonus implements GameRules {
 		return returnArray;
 		
 	}
+	
 	private boolean[] four2to4(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+
+		ArrayList<Card> sortedHand = sortByRank(hand);
 		
+		if(sortedHand.get(0).rank() == sortedHand.get(1).rank()
+				&& sortedHand.get(0).rank()==sortedHand.get(2).rank()
+				&& sortedHand.get(0).rank()==sortedHand.get(3).rank()) {
+			if(sortedHand.get(1).rank()<5) {
+				Arrays.fill(returnArray,true) ;
+				returnArray[sortedHandIndexes[4]]=false;
+			}
+			
+		}
+		else if(sortedHand.get(1).rank()==sortedHand.get(2).rank()
+				&& sortedHand.get(1).rank()==sortedHand.get(3).rank()
+				&& sortedHand.get(1).rank()==sortedHand.get(4).rank()) {
+			if(sortedHand.get(1).rank()<5) {
+				Arrays.fill(returnArray,true) ;
+				returnArray[sortedHandIndexes[0]]=false;
+			}
+			
+		}
+		else 	Arrays.fill(returnArray,false) ;
+
+		return returnArray;
 		
 	}
+	
+	
 	private boolean[] four5toK(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		
+		if(sortedHand.get(0).rank() == sortedHand.get(1).rank()
+				&& sortedHand.get(0).rank()==sortedHand.get(2).rank()
+				&& sortedHand.get(0).rank()==sortedHand.get(3).rank()) {
+			if(4<sortedHand.get(1).rank()&&sortedHand.get(1).rank()<14) {
+				Arrays.fill(returnArray,true) ;
+				returnArray[sortedHandIndexes[4]]=false;
+			}
+			
+		}
+		else if(sortedHand.get(1).rank()==sortedHand.get(2).rank()
+				&& sortedHand.get(1).rank()==sortedHand.get(3).rank()
+				&& sortedHand.get(1).rank()==sortedHand.get(4).rank()) {
+			if(4<sortedHand.get(1).rank()&&sortedHand.get(1).rank()<14) {
+				Arrays.fill(returnArray,true) ;
+				returnArray[sortedHandIndexes[0]]=false;
+			}
+			
+		}
+		else 	Arrays.fill(returnArray,false) ;
+
+		return returnArray;
+		
 		
 	}
+	
 	private boolean[] fullHouse(Hand hand) {
 		
+		boolean[] returnArray = new boolean[6];
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		if(sortedHand.get(0).rank() == sortedHand.get(1).rank()
+				&& sortedHand.get(0).rank()==sortedHand.get(2).rank()
+				&& sortedHand.get(3).rank()==sortedHand.get(4).rank()) {
+			Arrays.fill(returnArray,true) ;
+
+			
+		}else 		if(sortedHand.get(0).rank() == sortedHand.get(1).rank()
+				&& sortedHand.get(3).rank()==sortedHand.get(2).rank()
+				&& sortedHand.get(3).rank()==sortedHand.get(4).rank()) {
+			Arrays.fill(returnArray,true) ;
+
+			
+		} else Arrays.fill(returnArray,false) ;
+		
+		return returnArray;
+
+		
+
+		
 	}
+	
 	private boolean[] flush(Hand hand) {
 		
+		boolean[] returnArray = new boolean[6];
+		ArrayList<Card> sortedHand = sortBySuit(hand);
+		
+		if(sortedHand.get(0).suit() == sortedHand.get(4).suit()) {
+			Arrays.fill(returnArray, true);
+		}else
+			Arrays.fill(returnArray, false);
+		return returnArray;
+		
 	}
+	
 	private boolean[] straight(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		
+		if(sortedHand.get(4).rank()==14) {
+			if(sortedHand.get(0).rank()==10 &&
+					sortedHand.get(1).rank()==11 &&
+					sortedHand.get(2).rank()==12 &&
+					sortedHand.get(3).rank()==13) {
+				
+				Arrays.fill(returnArray, true);
+	
+			}else if(sortedHand.get(0).rank()==2 &&
+					sortedHand.get(1).rank()==3 &&
+					sortedHand.get(2).rank()==4 &&
+					sortedHand.get(3).rank()==5) {
+				Arrays.fill(returnArray, true);
+				
+			}
+			
+		}else {
+			int testRank = sortedHand.get(0).rank()+1;
+			for(int i = 1; i < 5; i++) {
+				if(sortedHand.get(i).rank()!= testRank) {
+					Arrays.fill(returnArray, false);
+					return returnArray;
+				}else testRank++;
+			}
+			Arrays.fill(returnArray, false);			
+		}
+		return returnArray;
+
 		
 	}
+	
 	private boolean[] threeOfAKind(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		if(sortedHand.get(0).rank() == sortedHand.get(1).rank() &&
+				sortedHand.get(1).rank() == sortedHand.get(2).rank()) {
+			Arrays.fill(returnArray,true) ;
+			returnArray[sortedHandIndexes[3]]=false;
+			returnArray[sortedHandIndexes[4]]=false;
+		}
+		else if(sortedHand.get(1).rank() == sortedHand.get(2).rank() &&
+				sortedHand.get(2).rank() == sortedHand.get(3).rank()) {
+			Arrays.fill(returnArray,true) ;
+			returnArray[sortedHandIndexes[0]]=false;
+			returnArray[sortedHandIndexes[4]]=false;
+		}
+		else if(sortedHand.get(2).rank() == sortedHand.get(3).rank() &&
+				sortedHand.get(3).rank() == sortedHand.get(4).rank()) {
+			Arrays.fill(returnArray,true) ;
+			returnArray[sortedHandIndexes[0]]=false;
+			returnArray[sortedHandIndexes[1]]=false;
+		}
+		else Arrays.fill(returnArray, false);
+		return returnArray;
 		
 	}
+	
 	private boolean[] twoPair(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		
+		if(sortedHand.get(0).rank() == sortedHand.get(1).rank()) {
+			if(sortedHand.get(2).rank() == sortedHand.get(3).rank()) {
+				Arrays.fill(returnArray,true) ;
+				returnArray[sortedHandIndexes[4]]=false;	
+			}
+			else if(sortedHand.get(3).rank() == sortedHand.get(4).rank()) {
+				Arrays.fill(returnArray,true) ;
+				returnArray[sortedHandIndexes[2]]=false;	
+			}
+
+			
+		}
+		else if(sortedHand.get(1).rank() == sortedHand.get(2).rank()) {
+			Arrays.fill(returnArray,true) ;
+			returnArray[sortedHandIndexes[0]]=false;	
+		}
+		else
+			Arrays.fill(returnArray, false);
+		
+		return returnArray;
+
 		
 	}
+	
 	private boolean[] jacksOrBetter(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		for(int i = 0; i < 4 ; i++) {
+			Arrays.fill(returnArray,false) ;
+			if(sortedHand.get(i).rank() >10) {
+				if(sortedHand.get(i).rank()==sortedHand.get(i+1).rank()) {
+					
+					returnArray[sortedHandIndexes[5]]=true;	
+					returnArray[sortedHandIndexes[i]]=true;	
+					returnArray[sortedHandIndexes[i+1]]=true;
+					break;
+					
+				}
+				
+			}
+		}
 		
+		return returnArray;
 	}
-	
-	
 	
 	private ArrayList<Card> sortByRank(Hand hand) {
 		int auxIndex = 0;
@@ -245,7 +432,30 @@ public class TenSevenDoubleBonus implements GameRules {
 			}
 			
 		}
+		return aux;
+	}
+	
+	private ArrayList<Card> sortBySuit(Hand hand){
 		
+		int auxIndex = 0;
+		ArrayList<Card> aux = new ArrayList<Card>();		
+		aux = hand._getHand();
+		
+		for (int i = 0;i < 5; i++) {
+			
+			for (int j = i ; j<5 ; j++) {
+				if(aux.get(j).suit() < aux.get(i).suit()) {
+					
+					auxIndex = sortedHandIndexes[i];
+					sortedHandIndexes[i] = sortedHandIndexes[j];
+					sortedHandIndexes[j]= auxIndex;
+					Collections.swap(aux, i, j);
+				}
+			}
+			
+		}
+		return aux;
+
 	}
 	
 	

@@ -26,21 +26,21 @@ public class GameInstance {
 		return 	rules.advice(hand);
 	}
 	
-	public boolean[] statistics(Hand hand)
+	public String statistics(int credit)
 	{
-		return 	rules.statistics(cards_analyze);
+		return 	rules.getStatistics(credit);
 	}
 	
-	public String[] getHandValue(Hand _hand)
+	public String[] getHandValue(Hand _hand, int bet)
 	{
 		
-		return 	rules.getHandValue(_hand);
+		return 	rules.getHandValue(_hand, bet);
 	}
 	
-	public int bet_result(ArrayList<Card> cards_analyze)
+	/*public int bet_result(ArrayList<Card> cards_analyze)
 	{
 		return 	rules.play_hand;
-	}
+	}*/
 	
 	public void prepareRound() {
 		deck.reset();

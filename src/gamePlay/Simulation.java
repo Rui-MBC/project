@@ -48,14 +48,14 @@ public class Simulation implements Game {
 				player.setHand(rcvd_cards,hold_cards);
 			}
 			
-			results = instance.getHandValue(player.getHandObject());
+			results = instance.getHandValue(player.getHandObject(),player.getBet());
 			
 			if (results[1] != null)
 			{
 				player.addcredit(Integer.parseInt(results[0]));
 			}
 			if(i==nbdeals) {
-				instance.statistics();
+				instance.statistics(player.credit());
 			}
 		}
 	}

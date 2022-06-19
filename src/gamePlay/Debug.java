@@ -1,5 +1,6 @@
 package gamePlay;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -37,7 +38,12 @@ public class Debug implements Game {
 		String[] result_aux;
 		
 		File file_cmd = new File("/Users/cemar/Main/IST/POO/Proj/DebugMode/cmd-file.txt");
-		Scanner sc_cmd = new Scanner(file_cmd);
+		Scanner sc_cmd = null;
+		try {
+			sc_cmd = new Scanner(file_cmd);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
 		//Cmd file
 		curr_line = sc_cmd.nextLine();
@@ -129,7 +135,7 @@ public class Debug implements Game {
 					ArrayList<Card> rcvd_cards = instance.deal(5-hold_amount);
 					player.setHand(rcvd_cards,hold_aux);
 					player.printHand();
-					result_aux = instance.getHandValue(player.getHandObject());
+					result_aux = instance.getHandValue(player.getHandObject(), player.getBet());
 					
 					if (result_aux[1] == null)
 					{
@@ -150,7 +156,7 @@ public class Debug implements Game {
 			else if (parts[i].contains("a"))
 			{
 				//call advice method
-				hold_aux = instance.advice(player.getHand());
+				hold_aux = instance.advice(player.getHandObject());
 				hold_flag = 0;
 				for(i=0; i<5; i++)
 				{
@@ -184,7 +190,7 @@ public class Debug implements Game {
 			else if (parts[i].contains("s"))
 			{
 				//call statistics method
-				instance.statistics();
+				System.out.println(instance.statistics(player.credit()));
 			}
 			
 			else if (parts[i].contains(".*[a-zA-Z].*"))
