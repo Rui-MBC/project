@@ -39,7 +39,7 @@ public class Hand {
 	
 	public String toString() {
 		
-		String hand = null;
+		String hand = "";
 		for(int i=0; i<5;i++ ) {
 			hand += (handCards.get(i).toString()+" ");
 		}

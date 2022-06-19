@@ -1,0 +1,121 @@
+1. KC QC JC TC 9C – Straight flush or 4 to a royal flush: Keep the straight flush
+2. AD KD QS JD TD – 4 to a royal flush or Straight: Keep 4 to a royal flush
+3. AS KS JS TS 9S – 4 to a royal flush or Flush: Keep 4 to a royal flush
+4. AH AD AS 2C 2S – Three Aces or Full House: Keep the three aces
+5. 4C 4S 4H 5D 5C – Full House or Three of a Kind (other than aces): Keep the Full House
+6. 5S 6S 7S 8S JS – Flush or 4 to a straight flush: Keep the flush
+7. 3D 4H 5H 6H 7H – Straight or 4 to a straight flush: Keep the straight
+8. AC KD QD JD TS – Straight or 3 to a royal flush: Keep the straight
+4
+9. KC QC JC 9C 4D – 4 to a straight flush or 3 to a royal flush: Keep 4 to a straight flush
+10. AH AS KD KS QS – Two pair or 3 to a royal flush: Keep the two pair
+11. JC JD 4D 7D 9D – High pair or 4 to a flush: Keep High pair
+12. QS QH JH AH 2C – High pair or 3 to a royal flush: Keep High pair.
+13. 8C JC QC KC 9H – 4 to a flush or 3 to a royal flush: Keep the 4 to a flush
+14. 2S 5S 7S 9S 7H – 4 to a flush or Low pair: Keep 4 to a flush
+15. TD JD QC KD 5S – 3 to a royal flush or 4 to an outside straight: Keep 3 to a royal flush
+16. TH QH AH TD 8C – 3 to a royal flush or Low pair: Keep 3 to a royal flush
+17. 7C 7D 8H 9S TD – 4 to an outside straight or Low pair: Keep 4 to an outside straight
+18. 7D 8D 9D TS 4H – 4 to an outside straight or 3 to a straight flush (type 1): Keep 4 to
+an outside straight
+19. 7C 7D 8D 9D 3S – Low pair or 3 to a straight flush (type 1): Keep the low pair
+20. KS QD JC 9H 9C – Low pair or 4 to an inside straight with 3 high cards: Keep the low
+pair
+21. AC KD QH JH 8H – AKQJ unsuited or 3 to a straight flush (type 1): Keep AKQJ
+unsuited
+22. AC KD QH JH 9S – AKQJ unsuited or 4 to an inside straight with 3 high cards: Keep
+AKQJ unsuited
+23. AC KD QH JH 2C – AKQJ unsuited or QJ suited: Keep AKQJ unsuited
+24. 2H QS JS 9D 8S – 3 to a straight flush (type 1) or 4 to an inside straight with 2 high
+cards: Keep 3 to a straight flush (type 1)
+25. 8H TH JH 3S 5D – 3 to a straight flush (type 1) or JT suited: Keep 3 to a straight flush
+(type 1)
+26. KS QD JD 9H 7C – 4 to an inside straight with 3 high cards or QJ suited: Keep 4 to an
+inside straight with 3 high cards
+27. AH KC QC TD 6C – 4 to an inside straight with 3 high cards or 3 to a flush with 2 high
+cards: Keep 4 to an inside straight with 3 high cards
+28. KH QS JS 9D 3C – 4 to an inside straight with 3 high cards or 2 suited high cards: Keep
+4 to an inside straight with 3 high cards
+29. KC QH JS 9H 8H – 4 to an inside straight with 3 high cards or 3 to a straight flush (type
+2): Keep 4 to an inside straight with 3 high cards
+30. QD JD 7D 5H 4S – QJ suited or 3 to a flush with 2 high cards: Keep QJ suited
+31. 8S 9H JD QD 2C – QJ suited or 4 to an inside straight with 2 high cards: Keep QJ
+suited
+32. QS JS 2H 3H 4H – QJ suited or 3 to a straight flush (type 2 or 3): Keep QJ suited
+33. KH JH 3H 5S 6C – 3 to a flush with 2 high cards or 2 suited high cards (except QJ):
+Keep 3 to a flush with 2 high cards
+34. 8S 9C JD QD 4D – QJ suited or 3 to a flush with 2 high cards or 4 to an inside straight
+with 2 high cards: Keep QJ suited
+35. 2C 3D 5H JC AC – 3 to a flush with 2 high cards or 4 to an inside straight with 1 high
+card: Keep 3 to a flush with 2 high cards
+5
+36. KH JH TS 9D 6C – 2 suited high cards (except QJ) or 4 to an inside straight with 2 high
+cards: Keep 2 suited high cards
+37. AC JC 2S 3S 5S – 2 suited high cards (except QJ) or 3 to a straight flush (type 2 or 3):
+Keep 2 suited high cards
+38. 8D 9D JH QD 4C – 4 to an inside straight with 2 high cards or 3 to a straight flush (type
+2 or 3): Keep 4 to an inside straight with 2 high cards
+39. 8S 9D JD QH 3D – 4 to an inside straight with 2 high cards or 3 to a flush with 1 high
+card: Keep 4 to an inside straight with 2 high cards
+40. 8C 9C TD QC 2H – 3 to a straight flush (type 2) or 4 to an inside straight with 1 high
+card: Keep 3 to a straight flush (type 2)
+41. 7C 8H TD JD 4S – 4 to an inside straight with 1 high card or JT suited: Keep 4 to an
+inside straight with 1 high card
+42. 7D 8C 9S JD 2D – 4 to an inside straight with 1 high card or 3 to a flush with 1 high
+card: Keep 4 to an inside straight with 1 high card
+43. AD 2C 4C 5C 7S – 4 to an inside straight with 1 high card or 3 to a straight flush (type
+2): Keep 3 to a straight flush (type 2)
+44. QH JS TS 2D 4C – JT suited or QJ unsuited: Keep JT suited
+45. JH TH 6H 7S 2D – JT suited or 3 to a flush with 1 high card: Keep JT suited
+46. JD TD 2C 4C 6C – JT suited or 3 to a straight flush (type 3): Keep JT suited
+47. JS TS KC 3D 7H – JT suited or KQ, KJ unsuited: Keep JT suited
+48. JC TC AH 4D 6S – JT suited or Ace: Keep JT suited
+49. 6S 7C 8D TH JH – JT suited or 4 to an inside straight with no high cards or 4 to an
+inside straight with 1 high card: Keep 4 to an inside straight with 1 high card
+50. JD TD 2C 5C 7C – JT suited or 3 to a flush with no high cards: Keep JT suited
+51. QC JH 9H 4H 2S – QJ unsuited or 3 to a flush with 1 high card: Keep QJ unsuited
+52. QC JD TC 3S 5H – QJ unsuited or QT suited: Keep QJ unsuited
+53. QS JD 5H 6H 9H – QJ unsuited or 3 to a straight flush (type 3): Keep QJ unsuited
+54. AD QC JS 4H 7S – QJ unsuited or Ace: Keep QJ unsuited
+55. QC JH 2D 5D 7D – QJ unsuited or 3 to a flush with no high cards: Keep QJ unsuited
+56. 7C TC QC 3H 2D – 3 to a flush with 1 high card or QT suited: Keep 3 to a flush with 1
+high card
+57. KS QH 8H 5H 2C – 3 to a flush with 1 high card or KQ, KJ unsuited: Keep 3 to a flush
+with 1 high card
+58. AD 5D 9D 8S 6H – 3 to a flush with 1 high card or Ace: Keep 3 to a flush with 1 high
+card
+59. 7C TC KC 3H 2D – 3 to a flush with 1 high card or KT suited: Keep 3 to a flush with 1
+high card
+60. 6C 7S 9C TH KC – 3 to a flush with 1 high card or 4 to an inside straight with no high
+cards: Keep 3 to a flush with 1 high card
+61. QH TH 2C 4C 6C – QT suited or 3 to a straight flush (type 3): Keep QT suited
+62. KH QS TS 4C 5D – QT suited or KQ unsuited: Keep QT suited
+63. AC QD TD 6S 9H – QT suited or Jack/King/Ace: Keep QT suited
+6
+64. QD TD 8H 7C 6S – QT suited or 4 to an inside straight with no high cards: Keep QT
+suited
+65. QS TS 3H 7H 8H – QT suited or 3 to a flush with no high cards: Keep QT suited
+66. 5C 6C 9C KD QH – 3 to a straight flush (type 3) or KQ, KJ unsuited: Keep 3 to a
+straight flush (type 3)
+67. 3H 5H 7H JS 8D – 3 to a straight flush (type 3) or Jack/Queen/King/Ace: Keep 3 to a
+straight flush (type 3)
+68. 2C 3C 6C TD KD – 3 to a straight flush (type 3) or KT suited: Keep 3 to a straight
+flush (type 3)
+69. 2D 3D 5H 6D 9S – 3 to a straight flush (type 3) or 4 to an inside straight with no high
+cards: Keep 3 to a straight flush (type 3)
+70. AD KC JS 7H 4C – KQ, KJ unsuited or Ace: Keep KQ, KJ unsuited
+71. KC QH TC 4D 6S – KQ, KJ unsuited or KT suited: Keep KQ, KJ unsuited
+72. KH JS 3D 8D 9D – KQ, KJ unsuited or 3 to a flush with no high cards: Keep KQ, KJ
+unsuited
+73. AC KH TH 4S 5D – Ace or KT suited: Keep Ace
+74. AC JH 5S 8D 9C – Ace or Jack, Queen, King: Keep Ace
+75. AD 5H 6S 7H 9D – Ace or 4 to an inside straight with no high cards: Keep Ace
+76. AS 2C 5C 9C 6H – Ace or 3 to a flush with no high cards: Keep Ace
+77. KD 6C 7S 9H TD – KT suited or 4 to an inside straight with no high cards: Keep KT
+suited
+78. KC TC 3H 5H 8H – KT suited or 3 to a flush with no high cards: Keep KT suited
+79. JH 2S 3C 4D 6H – Jack/Queen/King or 4 to an inside straight with no high cards: Keep
+Jack/Queen/King
+80. QC 2H 5H 7H 9S – Jack/Queen/King or 3 to a flush with no high cards: Keep Jack/Queen/King
+81. 2D 3S 5C 6C TC – 4 to an inside straight with no high cards or 3 to a flush with no high
+cards: Keep 4 to an inside straight with no high cards

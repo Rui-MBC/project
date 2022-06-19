@@ -12,10 +12,12 @@ public class Debug implements Game {
 	
 	private Player player ;
 	private GameInstance instance;
+	private String commandFileName;
 	
 	public Debug(String[] args) {
 		instance = new GameInstance(args[3],Integer.parseInt(args[1]));
 		player = new Player(Integer.parseInt(args[1]));
+		commandFileName = args[2];
 	}
 
 	/**
@@ -37,7 +39,7 @@ public class Debug implements Game {
 		
 		String[] result_aux;
 		
-		File file_cmd = new File("/Users/cemar/Main/IST/POO/Proj/DebugMode/cmd-file.txt");
+		File file_cmd = new File( "/home/ruimbc/PooWorkSpace/project/Commands/" + commandFileName);
 		Scanner sc_cmd = null;
 		try {
 			sc_cmd = new Scanner(file_cmd);
@@ -47,14 +49,16 @@ public class Debug implements Game {
 
 		//Cmd file
 		curr_line = sc_cmd.nextLine();
-		parts = curr_line.split("[ \n\t]");
+		parts = curr_line.split(" ");
 		
 		for ( i = 0; i < parts.length; i++)
 		{
 			
 			if (parts[i].contains("b"))
 			{
-				if (lastCmd.contains("z") || lastCmd.contains("d"))
+
+				
+				if ( lastCmd.contains("d"))
 				{
 					System.out.println("b: illegal command");
 				}
@@ -92,7 +96,9 @@ public class Debug implements Game {
 			
 			else if (parts[i].contains("d"))
 			{
-				if (!lastCmd.contains("z") || !lastCmd.contains("b"))
+
+
+				if (/*!lastCmd.contains("z") ||*/ !lastCmd.contains("b"))
 				{
 					System.out.println("d: illegal command");
 				}
@@ -155,6 +161,8 @@ public class Debug implements Game {
 			
 			else if (parts[i].contains("a"))
 			{
+
+
 				//call advice method
 				hold_aux = instance.advice(player.getHandObject());
 				hold_flag = 0;
@@ -197,8 +205,12 @@ public class Debug implements Game {
 			{
 				System.out.println(parts[i].toString()+": invalid command");
 			}
+
+
 		}
 		sc_cmd.close();
+
+
 		
 	}
 

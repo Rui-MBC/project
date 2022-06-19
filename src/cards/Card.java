@@ -17,7 +17,7 @@ public class Card {
 	private  char value;
 	private int rank;
 	
-	public Card(char _suit, char _value) {
+	public Card(char _value, char _suit) {
 		// TODO Auto-generated constructor stub
 	suit = _suit;
 	value = _value;

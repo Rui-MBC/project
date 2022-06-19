@@ -10,7 +10,7 @@ public class Player {
 
 	public Player(int _credit) {
 		credit = _credit;
-		
+		hand = new Hand();
 		// initialize bet to 5 as a default bet value
 		last_bet = 5;
 

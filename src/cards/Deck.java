@@ -11,8 +11,8 @@ public class Deck {
 	int deck_pointer = 0;
 	
 	public Deck(String fileName) {
-		
-		File file = new File("/home/ruimbc/PooWorkSpace/project/Decks/"+fileName);
+		System.out.println(fileName);
+		File file = new File( "/home/ruimbc/PooWorkSpace/project/Decks/"+ fileName);
 		char[] ch  = null;
 		try (FileReader fr = new FileReader(file))
         {
@@ -104,7 +104,7 @@ public class Deck {
 		ArrayList<Card> get_aux = new ArrayList<Card>();
 		for (int i = 0; i < nr_cards; i++ )
 		{
-			get_aux.set(i, deck.get(deck_pointer+i));
+			get_aux.add(deck.get(deck_pointer+i));//set(i, deck.get(deck_pointer+i));
 		}
 		
 		deck_pointer += nr_cards;
