@@ -11,6 +11,7 @@ import java.util.Collections;
 public class TenSevenDoubleBonus implements GameRules {
 	
 	private int[] sortedHandIndexes = {0,1,2,3,4}; ///originalIndex
+
 	
 	
 	private static int[][] creditMatrix = {
@@ -53,7 +54,7 @@ public class TenSevenDoubleBonus implements GameRules {
 	}
 	
 	public boolean[] advice(Hand hand) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
@@ -396,7 +397,7 @@ public class TenSevenDoubleBonus implements GameRules {
 			if(sortedHand.get(i).rank() >10) {
 				if(sortedHand.get(i).rank()==sortedHand.get(i+1).rank()) {
 					
-					returnArray[sortedHandIndexes[5]]=true;	
+					returnArray[5]=true;	
 					returnArray[sortedHandIndexes[i]]=true;	
 					returnArray[sortedHandIndexes[i+1]]=true;
 					break;
@@ -458,7 +459,567 @@ public class TenSevenDoubleBonus implements GameRules {
 
 	}
 	
+	//1
+	private boolean[] starightFlush_FourOfAKind_RoyalFlush(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+		boolean[] ret = new boolean[6];
+		returnArray = straightFlush(hand);
+		if(returnArray[5]) {
+			ret = returnArray;
+		}
+		returnArray = fourAces(hand);
+		if(returnArray[5]) {
+			ret = returnArray;
+		}
+
+		returnArray = four2to4(hand);
+		if(returnArray[5]) {
+			ret = returnArray;
+		}
+		returnArray = four5toK(hand);
+		if(returnArray[5]) {
+			ret = returnArray;
+		}
+
+		returnArray = royalFlush(hand);
+		if(returnArray[5]) {
+			ret = returnArray;
+		}
+		return ret;	
+	}
 	
+	
+	///2
+	private boolean[] fourToRoyalFlush(Hand hand) {
+		ArrayList<Card> sortedHand = sortBySuit(hand);
+		boolean[] returnArray = new boolean[6];
+		if(sortedHand.get(0).suit() == sortedHand.get(3).suit()) {
+			Arrays.fill(returnArray,true);
+			returnArray[sortedHandIndexes[4]]=false;	
+			for(int i = 0 ; i < 4; i++) {	
+					if(sortedHand.get(i).rank()<=9) {
+						Arrays.fill(returnArray, false);
+						break;
+					}
+				
+			}
+			
+		}
+		else if(	sortedHand.get(1).suit() == sortedHand.get(4).suit()) {
+			Arrays.fill(returnArray,true);
+			returnArray[sortedHandIndexes[0]]=false;	
+			for(int i = 1 ; i < 5; i++) {	
+					if(sortedHand.get(i).rank()<=9) {
+						Arrays.fill(returnArray, false);
+						break;
+					}
+				
+			}
+			
+		}
+		return returnArray;
+		
+	}
+	
+	////3
+	private boolean[] threeAces(Hand hand) {
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+
+		if(sortedHand.get(2).rank()==14) {
+			Arrays.fill(returnArray, true);
+			returnArray[0]=false;
+			returnArray[1]=false;
+			
+		}
+		return returnArray;
+		
+	}
+	
+	
+	
+	///4
+	private boolean[] staright_Flush_FullHouse(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+		boolean[] ret = new boolean[6];
+		Arrays.fill(ret, false);
+		
+		returnArray = straight(hand);
+		if(returnArray[5]) {
+			ret = returnArray;
+		}
+		returnArray = fullHouse(hand);
+		if(returnArray[5]) {
+			ret = returnArray;
+		}
+
+		returnArray = flush(hand);
+		if(returnArray[5]) {
+			ret = returnArray;
+		}
+		
+	
+		return ret;	
+	}
+	
+	////5 is threeOfAKind(hand)
+	
+	//// 6   
+	private boolean[] fourToStraightFlush(Hand hand) {
+		
+		boolean[] fourToFlush = fourToFlush(hand);
+		boolean[] fourToOutsideStraight = fourToOutsideStraight(hand);
+		boolean[] fourToAnInsideStraight = fourToAnInsideStraight(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+	
+		if(fourToFlush[5]) {
+			if(fourToOutsideStraight[5]) {
+				if(fourToFlush == fourToOutsideStraight) {
+					returnArray = fourToFlush;
+				}		
+			}
+			else
+			if(fourToAnInsideStraight[5]) {
+				if(fourToFlush == fourToAnInsideStraight) {
+					returnArray = fourToFlush;
+				}			
+			}
+		}
+		return returnArray;	
+	}
+	
+	
+	
+	
+	///7 is twoPair
+	
+	////8 is jacksOrBetter
+	
+	
+	//9
+	private boolean[] fourToFlush(Hand hand) {
+		ArrayList<Card> sortedHand = sortBySuit(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray,false);
+
+		if(sortedHand.get(0).suit() == sortedHand.get(3).suit()) {
+			Arrays.fill(returnArray,true);
+			returnArray[sortedHandIndexes[4]]=false;
+		}
+		else if(sortedHand.get(1).suit() == sortedHand.get(4).suit()) {
+			Arrays.fill(returnArray,true);
+			returnArray[sortedHandIndexes[0]]=false;
+		}
+		
+		return returnArray;
+	}
+	
+	
+	//10
+	private boolean[] threeToRoyalFlush(Hand hand) {
+		ArrayList<Card> sortedHand = sortBySuit(hand);
+		boolean[] returnArray = new boolean[6];
+		if(sortedHand.get(0).suit() == sortedHand.get(2).suit()) {
+			Arrays.fill(returnArray,true);
+			returnArray[sortedHandIndexes[3]]=false;	
+			returnArray[sortedHandIndexes[4]]=false;	
+			for(int i = 0 ; i < 3; i++) {	
+					if(sortedHand.get(i).rank()<=9) {
+						Arrays.fill(returnArray, false);
+						break;
+					}
+				
+			}
+			
+		}
+		else if(	sortedHand.get(1).suit() == sortedHand.get(3).suit()) {
+			Arrays.fill(returnArray,true);
+			returnArray[sortedHandIndexes[0]]=false;	
+			returnArray[sortedHandIndexes[4]]=false;	
+			for(int i = 1 ; i < 4; i++) {	
+					if(sortedHand.get(i).rank()<=9) {
+						Arrays.fill(returnArray, false);
+						break;
+					}
+				
+			}
+			
+		}
+		else if(	sortedHand.get(2).suit() == sortedHand.get(4).suit()) {
+			Arrays.fill(returnArray,true);
+			returnArray[sortedHandIndexes[0]]=false;	
+			returnArray[sortedHandIndexes[1]]=false;	
+			for(int i = 1 ; i < 5; i++) {	
+					if(sortedHand.get(i).rank()<=9) {
+						Arrays.fill(returnArray, false);
+						break;
+					}
+				
+			}
+			
+		}
+		return returnArray;
+		
+	}
+	
+	
+	//11
+	private boolean[] fourToOutsideStraight(Hand hand) {
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		boolean[] returnArray = new boolean[6];
+		int smallVal=1;
+
+		
+		int testRank = sortedHand.get(0).rank()+1;
+		for(int i = 1; i < 4; i++) {
+			if(sortedHand.get(i).rank()!= testRank) {
+				smallVal = 0;
+				break;
+			}else testRank++;
+		}
+		if(smallVal==0) {
+			testRank = sortedHand.get(1).rank()+1;
+			for(int i = 2; i < 5; i++) {
+				if(sortedHand.get(i).rank()!= testRank) {
+					Arrays.fill(returnArray, false);
+					break;
+				}else testRank++;
+			}
+			Arrays.fill(returnArray, true);
+			returnArray[sortedHandIndexes[0]]=false;
+		}
+		else {
+			Arrays.fill(returnArray, true);
+			returnArray[sortedHandIndexes[4]]=false;
+		}
+		return returnArray;
+		
+	}
+	
+	//12
+	private boolean[] lowPair(Hand hand) {
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+
+		for (int i = 0 ;i < 4; i++) {
+			if (sortedHand.get(i).rank()==sortedHand.get(i+1).rank() &&
+					sortedHand.get(i).rank()<11) {
+				returnArray[5]=true;
+				returnArray[sortedHandIndexes[i]]=true;
+				returnArray[sortedHandIndexes[i+1]]=true;
+				break;
+			}
+		}
+		return returnArray;
+	}
+	
+	//13
+	private boolean[] unsuitedAKQJ(Hand hand) {
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		if(sortedHand.get(4).rank() ==14 &&
+				sortedHand.get(3).rank() ==13 &&
+				sortedHand.get(2).rank() ==12 &&
+				sortedHand.get(1).rank() ==11 ) {
+			Arrays.fill(returnArray, true);
+			returnArray[sortedHandIndexes[0]]=false;
+			
+		}
+		return returnArray;
+
+	}
+	
+	//14
+	private boolean[] threeToStraightFlushType1(Hand hand) {
+		
+	}
+	
+	
+	//15
+	private boolean[] fourToInsideStraight3HighCards(Hand hand) {
+		boolean[] fourToAnInsideStraight = fourToAnInsideStraight(hand);
+		boolean[] returnArray
+	}
+	
+	
+	//16
+	private boolean[] suitedQJ(Hand hand) {
+		ArrayList<Card> sortedHand = sortBySuit(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		boolean flagFound = false;
+		
+		for (int i = 0 ; i < 4; i++) {
+			if(sortedHand.get(i).rank()!=12 && 
+					sortedHand.get(i).rank()!=11) continue;
+			char suit = sortedHand.get(i).suit();
+			for(int j = i+1 ; j<5; j++) {
+				if(suit == sortedHand.get(j).suit()) {
+					if(sortedHand.get(j).rank() ==12  ||
+							sortedHand.get(j).rank() ==11) {
+						returnArray[5]=true;
+						returnArray[sortedHandIndexes[i]]=true;
+						returnArray[sortedHandIndexes[j]]=true;
+						flagFound = true;
+						break;
+					}
+				}else break;
+			}
+			if(flagFound)break;
+		}
+		return returnArray;
+		
+	}
+	
+	//17
+	private boolean[] threeToFlushWithtwoHighCards(Hand hand) {
+		ArrayList<Card> sortedHand = sortBySuit(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		int counter=0;
+		
+		if(sortedHand.get(0).suit() == sortedHand.get(2).suit()) {
+			
+			if(sortedHand.get(0).rank() >10) counter++;
+			if(sortedHand.get(1).rank() >10) counter++;
+			if(sortedHand.get(2).rank() >10) counter++;
+			if (counter >1) {
+				Arrays.fill(returnArray,true);
+				returnArray[sortedHandIndexes[3]]=false;	
+				returnArray[sortedHandIndexes[4]]=false;	
+			}	
+		}
+		else if(	sortedHand.get(1).suit() == sortedHand.get(3).suit()) {
+			if(sortedHand.get(1).rank() >10) counter++;
+			if(sortedHand.get(2).rank() >10) counter++;
+			if(sortedHand.get(3).rank() >10) counter++;
+			if (counter >1) {
+				Arrays.fill(returnArray,true);
+				returnArray[sortedHandIndexes[0]]=false;	
+				returnArray[sortedHandIndexes[4]]=false;	
+			}
+		}
+		else if(	sortedHand.get(2).suit() == sortedHand.get(4).suit()) {
+			if(sortedHand.get(2).rank() >10) counter++;
+			if(sortedHand.get(3).rank() >10) counter++;
+			if(sortedHand.get(4).rank() >10) counter++;
+			if (counter >1) {
+				Arrays.fill(returnArray,true);
+				returnArray[sortedHandIndexes[0]]=false;	
+				returnArray[sortedHandIndexes[1]]=false;	
+			}
+		}
+		return returnArray;	
+	}
+	
+	//18
+	private boolean[] twoSuitedHighCards(Hand hand) {
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		char suit;
+		boolean flagFound = false;
+		for (int i = 0; i < 4; i++) {
+			if(sortedHand.get(i).rank()>10) {
+				suit = sortedHand.get(i).suit();
+				for (int j = i+1; j<5; j++) {
+					if(sortedHand.get(j).rank()>10 &&
+							sortedHand.get(j).suit()==suit) {
+						returnArray[5]=true;
+						returnArray[sortedHandIndexes[i]]=true;
+						returnArray[sortedHandIndexes[j]]=true;
+						flagFound = true;
+						break;
+						
+					}
+				}
+				if(flagFound)break;
+			}
+		}
+		return returnArray;
+	}
+	
+	//28
+	private boolean[] KQorKJUnsuited(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		char k_suit = ' ';
+		
+		for(int i = 4; i < 0; i--) 
+		{
+			if(sortedHand.get(i).rank() == 13)
+			{
+				k_suit = sortedHand.get(i).suit();
+				for(int j = i; j <= 0; j--)
+				{
+					if((sortedHand.get(j).rank() == 11 || sortedHand.get(j).rank() == 12)
+							&& sortedHand.get(j).suit() != k_suit)
+					{
+						returnArray[sortedHandIndexes[j]] = true;
+						returnArray[5] = true;
+						return returnArray;
+					}
+				}
+			}
+		}
+		
+		return returnArray;
+	}
+	
+	//29
+	private boolean[] Ace(Hand hand) {
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		
+		for(int i = 4; i < 0; i--) 
+		{
+			if(hand.get(i).rank() == 14)
+			{
+				returnArray[sortedHandIndexes[i]] = true;
+				returnArray[5] = true;
+				return returnArray;
+			}
+		}
+		
+		return returnArray;
+	}
+	//30
+	private boolean[] KTsuited(Hand hand) {
+
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		boolean k_aux = false;
+		char k_suit = ' ';
+		
+			
+		for(int i = 4; i < 0; i--) 
+		{
+			if(sortedHand.get(i).rank() == 13)
+			{
+				k_suit = sortedHand.get(i).suit();
+				for(int j = i; j <= 0; j--)
+				{
+					if(sortedHand.get(j).rank() == 10 && sortedHand.get(j).suit() == k_suit )
+					{
+						returnArray[sortedHandIndexes[j]] = true;
+						returnArray[sortedHandIndexes[i]] = true;
+						returnArray[5] = true;
+						return returnArray;
+					}
+				}
+
+			}
+
+		}
+		
+		return returnArray;
+
+	}
+	
+	//31
+	private boolean[] JackQueenKing(Hand hand) {
+
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		
+			
+		for(int i = 4; i <= 0; i--) 
+		{
+			if(sortedHand.get(i).rank() <= 10)
+			{
+				return returnArray;
+			}
+			
+			else if (sortedHand.get(i).rank() > 10 && sortedHand.get(i).rank() < 14)
+			{
+				returnArray[5] = true;
+				returnArray[sortedHandIndexes[i]] = true;
+			}
+		}
+		
+		return returnArray;
+
+	}
+	
+	//33
+	private boolean[] threeToAFlushWithNoHighCards(Hand hand) {
+
+		ArrayList<Card> sortedHand = sortBySuit(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		
+		for(int i=0 ; i<2 ; i++) {
+			if(sortedHand.get(i).suit() == sortedHand.get(i+2).suit()) {
+				if(sortedHand.get(i).rank()<11 && sortedHand.get(i+1).rank()<11 && sortedHand.get(i+2).rank()<11) {
+					returnArray[5] = true;
+					returnArray[sortedHandIndexes[i]] = true;
+					returnArray[sortedHandIndexes[i+1]] = true;
+					returnArray[sortedHandIndexes[i+2]] = true;
+					break;
+				}
+			}
+		}
+		
+		return returnArray;
+
+	}
+	
+	
+	
+	private boolean[] fourToAnInsideStraight(Hand hand) {
+
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		ArrayList<Card> sortedHand = sortByRank(hand);
+		int lastRank=0;
+		int indexToBegin=0;
+		
+		if(sortedHand.get(4).rank()==14) 
+		{
+			if(sortedHand.get(3).rank()==13 || sortedHand.get(3).rank()==5) 
+			{
+				indexToBegin = 3;
+				returnArray[sortedHandIndexes[4]] = true;
+				returnArray[sortedHandIndexes[3]] = true;
+			}
+			else return returnArray;
+		}
+		
+		else if(sortedHand.get(4).rank() - sortedHand.get(0).rank() == 4)
+		{
+			indexToBegin = 4;
+			returnArray[sortedHandIndexes[4]] = true;
+		}
+		
+		if (indexToBegin != 0)
+		{
+			lastRank = sortedHand.get(indexToBegin).rank();
+			for(int i = indexToBegin-1; i >= 0; i--) 
+			{
+				if(sortedHand.get(i).rank() != lastRank-1) 
+				{
+					returnArray[i] = false;
+				}
+				
+				else {returnArray[i] = true;
+				returnArray[5]=true;}
+				lastRank--;
+			}
+
+		}
+			
+		else return returnArray;
+		
+		return returnArray;
+
+	}
 
 
 
