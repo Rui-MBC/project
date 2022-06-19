@@ -15,7 +15,7 @@ public class Simulation implements Game {
 	int nbdeals;
 	
 	public Simulation(String[] args) {
-		instance = new GameInstance("OG.deck");
+		instance = new GameInstance("OG.deck",Integer.parseInt(args[1]));
 		player = new Player(Integer.parseInt(args[1]));
 		bet = Integer.parseInt(args[2]);
 		nbdeals = Integer.parseInt(args[3]);

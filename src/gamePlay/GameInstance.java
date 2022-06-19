@@ -3,15 +3,17 @@ import java.util.ArrayList;
 
 import cards.*;
 
+
 public class GameInstance {
 	
 	Deck deck;
 	GameRules rules;
+	int inCred = 0;
 	
-	public GameInstance(String deckfile) {
+	public GameInstance(String deckfile, int iniCred) {
 		deck = new Deck(deckfile);
-		rules = new TenSeven();
-		
+		inCred = iniCred;
+		rules = new TenSevenDoubleBonus(iniCred);
 	}
 	
 	public ArrayList<Card> deal(int nr_cards)
@@ -19,12 +21,12 @@ public class GameInstance {
 		return deck.get_cards(nr_cards);
 	}
 	
-	public boolean[] advice(ArrayList<Card> cards_analyze)
+	public boolean[] advice(Hand hand)
 	{
-		return 	rules.advice(cards_analyze);
+		return 	rules.advice(hand);
 	}
 	
-	public boolean[] statistics(ArrayList<Card> cards_analyze)
+	public boolean[] statistics(Hand hand)
 	{
 		return 	rules.statistics(cards_analyze);
 	}

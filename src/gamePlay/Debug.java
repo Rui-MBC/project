@@ -13,7 +13,7 @@ public class Debug implements Game {
 	private GameInstance instance;
 	
 	public Debug(String[] args) {
-		instance = new GameInstance(args[3]);
+		instance = new GameInstance(args[3],Integer.parseInt(args[1]));
 		player = new Player(Integer.parseInt(args[1]));
 	}
 
