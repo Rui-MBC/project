@@ -18,11 +18,8 @@ public class Hand {
 	public void _setHand(ArrayList<Card> cards) {
 		
 		handCards.clear();
-		
-		for (int i=0;i<5;i++)
-		{
-			handCards.addAll(cards);
-		}
+
+		handCards.addAll(cards);
 	}
 	
 	public void _setHand(ArrayList<Card> cards,boolean hold_bool[]) {
@@ -40,7 +37,7 @@ public class Hand {
 	public String toString() {
 		
 		String hand = "";
-		for(int i=0; i<5;i++ ) {
+		for(int i=0; i<handCards.size();i++ ) {
 			hand += (handCards.get(i).toString()+" ");
 		}
 		return hand;

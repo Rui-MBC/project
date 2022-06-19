@@ -12,7 +12,7 @@ public class TenSevenDoubleBonus implements GameRules {
 	
 	private int[] sortedHandIndexes = {0,1,2,3,4}; ///originalIndex
 
-	
+	private int[] _sortedHandIndexes = {0,1,2,3,4};
 	
 	private static int[][] creditMatrix = {
 			{250, 500, 750, 1000, 4000}, //Royal Flush
@@ -263,32 +263,19 @@ public class TenSevenDoubleBonus implements GameRules {
 	private boolean[] royalFlush(Hand hand) {
 		char[] valueArray = new char[] {'T','J','Q','K','A'};
 		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray,false) ;
 		
-		if(hand.get(0).suit() == hand.get(1).suit()
-				&& hand.get(0).suit()==hand.get(2).suit()
-				&& hand.get(0).suit()==hand.get(3).suit()
-				&& hand.get(0).suit()==hand.get(4).suit()) {
-			for(char s : valueArray) {
-				if(s == hand.get(0).value() || 
-						s == hand.get(1).value() ||
-						s == hand.get(2).value() ||
-						s == hand.get(3).value() ||
-						s == hand.get(4).value()) {
-					
+		if(flush(hand)[5]) {
+			for(int i=0; i<5 ;i++) {
+				if(hand.get(i).rank() > 9) {
+					continue;
 				}
 				else {
 					Arrays.fill(returnArray,false) ;
-					
+					break;
 				}
 			}
-			Arrays.fill(returnArray,true) ;
-
-			
-		}
-		else {
-			Arrays.fill(returnArray,false) ;
-		}
-		
+		}		
 		return returnArray;
 		
 	}
@@ -535,16 +522,13 @@ public class TenSevenDoubleBonus implements GameRules {
 	}
 	
 	private ArrayList<Card> sortByRank(Hand hand) {
-		System.out.println("hand = "+hand);
 		int auxIndex = 0;
 
 		ArrayList<Card> aux = new ArrayList<Card>();
 
-		
+		sortedHandIndexes =  Arrays.copyOfRange(_sortedHandIndexes, 0, 5); ;
 		aux = hand._getHand();
-		
-		System.out.println("aux = "+ aux);
-		
+				
 		
 		for (int i = 0;i < 5; i++) {
 			
@@ -563,11 +547,11 @@ public class TenSevenDoubleBonus implements GameRules {
 	}
 	
 	private ArrayList<Card> sortBySuit(Hand hand){
-		System.out.println("hand = "+hand);
 		int auxIndex = 0;
-		ArrayList<Card> aux = new ArrayList<Card>();		
+		ArrayList<Card> aux = new ArrayList<Card>();
+		sortedHandIndexes =  Arrays.copyOfRange(_sortedHandIndexes, 0, 5); ;
 		aux = hand._getHand();
-		System.out.println("aux = "+ aux);
+
 		for (int i = 0;i < 5; i++) {
 			
 			for (int j = i ; j<5 ; j++) {
@@ -618,6 +602,7 @@ public class TenSevenDoubleBonus implements GameRules {
 	///2
 	private boolean[] fourToRoyalFlush(Hand hand) {
 		ArrayList<Card> sortedHand = sortBySuit(hand);
+		System.out.println(sortedHand);
 		boolean[] returnArray = new boolean[6];
 		if(sortedHand.get(0).suit() == sortedHand.get(3).suit()) {
 			Arrays.fill(returnArray,true);
