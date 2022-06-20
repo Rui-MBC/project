@@ -344,7 +344,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 	public String getStatistics(int credit, int bet_sum) {
 
 		return "\nHand             "+statTotalCount+
-		       "\n________"+
+		       "\n____"+
 		       "\nJacks or Better  "+statJacksOrBetter+
 		       "\nTwo Pair         "+statTwoPair+
 		       "\nThree Of A Kind  "+statThreeOfAKind+
@@ -355,12 +355,11 @@ public String[]  getHandValue(Hand hand, int bet) {
 		       "\nStraight Flush   "+statStraightFlush+
 		       "\nRoyal Flush      "+statRoyalFlush+
 		       "\nOther            "+statOther+
-		       "\n________"+
+		       "\n____"+
 		       "\nTotal            "+statTotalWin+
-		       "\n________"+
-		       "\nCredit           "+credit+"   "+(((credit-initialCredit)/(bet_sum))*100) + "% \n";
-	}
-	
+		       "\n____"+
+		       "\nCredit           "+credit+"   "+(((double)(credit-initialCredit)/(double)(bet_sum))/100) + "% \n";
+	}	
 	private boolean[] royalFlush(Hand hand) {
 		char[] valueArray = new char[] {'T','J','Q','K','A'};
 		boolean[] returnArray = new boolean[6];
@@ -1119,7 +1118,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 	//15
 	private boolean[] fourToInsideStraight3HighCards(Hand hand) {
 		boolean[] fourToAnInsideStraight = fourToAnInsideStraight(hand);
-		System.out.println("fourToAnInsideStaight is "+fourToAnInsideStraight[5]);
+		//System.out.println("fourToAnInsideStaight is "+fourToAnInsideStraight[5]);
 		boolean[] returnArray = new boolean[6];
 		int highCardCounter = 0;
 		Arrays.fill(returnArray, false);
@@ -1784,8 +1783,29 @@ public String[]  getHandValue(Hand hand, int bet) {
 			}
 		}else{
 
+									//testar n n+1 n+2 n+3;    n n+2 n+3 n+4; n n+1 n+3 n+4; n n+1 n+2 n+4
+			int n = sortedHand.get(4).rank();
+			for(int testRank = n; testRank>=(n-4) ;testRank--){
+				for (int i = 0 ; i < 4; i++){
+					if(sortedHand.get(i).rank() == testRank){
+						returnArray[sortedHandIndexes[i]]=true;
+						counter++;
+						break;
+					}
+				}
+			}
+			if(counter >=3){
+				returnArray[5]=true;
+				returnArray[sortedHandIndexes[4]]=true;
+				return returnArray;
+			}
+			else{
+				counter = 0;
+				Arrays.fill(returnArray,false);
+			}
+
 			//testar n n+1 n+2 n+3;    n n+2 n+3 n+4; n n+1 n+3 n+4; n n+1 n+2 n+4
-			int n = sortedHand.get(0).rank();
+			n = sortedHand.get(0).rank();
 			for(int testRank = n; testRank<=(n+4) ;testRank++){
 				for (int i = 1 ; i < 5; i++){
 					if(sortedHand.get(i).rank() == testRank){
@@ -1806,26 +1826,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 			}
 
 
-						//testar n n+1 n+2 n+3;    n n+2 n+3 n+4; n n+1 n+3 n+4; n n+1 n+2 n+4
-			n = sortedHand.get(4).rank();
-			for(int testRank = n; testRank>=(n-4) ;testRank--){
-				for (int i = 0 ; i < 4; i++){
-					if(sortedHand.get(i).rank() == testRank){
-						returnArray[sortedHandIndexes[i]]=true;
-						counter++;
-						break;
-					}
-				}
-			}
-			if(counter >=3){
-				returnArray[5]=true;
-				returnArray[sortedHandIndexes[4]]=true;
-				return returnArray;
-			}
-			else{
-				counter = 0;
-				Arrays.fill(returnArray,false);
-			}
+
 		}
 		return returnArray;
 
