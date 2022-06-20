@@ -33,13 +33,14 @@ public class Simulation implements Game {
 		int n_cards_to_deal = 0;
 		
 		for(int i=0 ;i<nbdeals ;i++) {
+			n_cards_to_deal = 0;
 			instance.prepareRound();
 			player.bet(bet);
 			deal_cards = instance.deal(5);
 			player.setHand(deal_cards);
 			hold_cards = instance.advice(player.getHandObject());
 			for(int j=0; j<5; j++) {
-				if(!hold_cards[i]) {
+				if(!hold_cards[j]) {
 					n_cards_to_deal++;					
 				}
 			}

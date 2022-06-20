@@ -23,7 +23,7 @@ public class TenSevenDoubleBonus implements GameRules {
 			{ 10,  20,  30,   40,   50}, //Full House
 			{  7,  14,  21,   28,   35}, //Flush
 			{  5,  10,  15,   20,   25}, //Straight
-			{  3,   6,  12,   18,   24}, //Three of a Kind
+			{  3,   6,   9,   12,   15}, //Three of a Kind
 			{  1,   2,   3,    4,    5}, //Two Pair
 			{  1,   2,   3,    4,    5}  //Jacks or Better
 			
@@ -333,7 +333,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 			returnArray[1] = nameArray[10];
 		}
 		
-		if(returnArray[0] == "0") 
+		if(returnArray[0].equals("0")) 
 			statOther++;
 		else 
 			statTotalWin++;
@@ -358,7 +358,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 		       "\n____"+
 		       "\nTotal            "+statTotalWin+
 		       "\n____"+
-		       "\nCredit           "+credit+"   "+(((double)(credit-initialCredit)/(double)(bet_sum))/100) + "% \n";
+		       "\nCredit           "+credit+"   "+/*(double)((credit*100)/initialCredit)+"\n";*/(((double)(credit-initialCredit)/(double)(bet_sum))/100) + "% \n";
 	}	
 	private boolean[] royalFlush(Hand hand) {
 		char[] valueArray = new char[] {'T','J','Q','K','A'};
@@ -1369,15 +1369,23 @@ public String[]  getHandValue(Hand hand, int bet) {
 	}
 	
 	//22
-	private boolean[] unsuitedKQJ(Hand hand) {
+private boolean[] unsuitedKQJ(Hand hand) {
 		ArrayList<Card> sortedHand = sortByRank(hand);
 		boolean[] returnArray = new boolean[6];
 		Arrays.fill(returnArray, false);
-		if(sortedHand.get(2).rank()==11) {
-			Arrays.fill(returnArray, true);
-			returnArray[sortedHandIndexes[0]]=false;
-			returnArray[sortedHandIndexes[1]]=false;			
+		
+		if(sortedHand.get(4).rank()==13) 
+		{
+			if(sortedHand.get(2).rank()==11) 
+			{
+				Arrays.fill(returnArray, true);
+				returnArray[sortedHandIndexes[0]]=false;
+				returnArray[sortedHandIndexes[1]]=false;			
+			}
 		}
+			
+			
+
 		return returnArray;
 	}
 	
@@ -1415,17 +1423,16 @@ public String[]  getHandValue(Hand hand, int bet) {
 			boolean[] returnArray = new boolean[6];
 			Arrays.fill(returnArray, false);
 			ArrayList<Card> sortedHand = sortByRank(hand);
-			char k_suit = ' ';
+			char q_suit = ' ';
 			
-			for(int i = 4; i < 0; i--) 
+			for(int i = 4; i > 0; i--) 
 			{
 				if(sortedHand.get(i).rank() == 12)
 				{
-					k_suit = sortedHand.get(i).suit();
-					for(int j = i; j <= 0; j--)
+					q_suit = sortedHand.get(i).suit();
+					for(int j = i; j >= 0; j--)
 					{
-						if(sortedHand.get(j).rank() == 11 
-								&& sortedHand.get(j).suit() != k_suit)
+						if(sortedHand.get(j).rank() == 11 && sortedHand.get(j).suit() != q_suit)
 						{
 							returnArray[sortedHandIndexes[j]] = true;
 							returnArray[5] = true;
@@ -1437,7 +1444,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 			
 			return returnArray;
 
-		}	
+		}
 	
 	//25
 	private boolean[] threeToFlushWithOneHighCard(Hand hand) {
@@ -1588,16 +1595,16 @@ public String[]  getHandValue(Hand hand, int bet) {
 		ArrayList<Card> sortedHand = sortByRank(hand);
 		char k_suit = ' ';
 		
-		for(int i = 4; i < 0; i--) 
+		for(int i = 4; i > 0; i--) 
 		{
 			if(sortedHand.get(i).rank() == 13)
 			{
 				k_suit = sortedHand.get(i).suit();
-				for(int j = i; j <= 0; j--)
+				for(int j = i; j >= 0; j--)
 				{
-					if((sortedHand.get(j).rank() == 11 || sortedHand.get(j).rank() == 12)
-							&& sortedHand.get(j).suit() != k_suit)
+					if((sortedHand.get(j).rank() == 11 || sortedHand.get(j).rank() == 12) && sortedHand.get(j).suit() != k_suit)
 					{
+						returnArray[sortedHandIndexes[i]] = true;
 						returnArray[sortedHandIndexes[j]] = true;
 						returnArray[5] = true;
 						return returnArray;
@@ -1613,18 +1620,16 @@ public String[]  getHandValue(Hand hand, int bet) {
 	private boolean[] Ace(Hand hand) {
 		boolean[] returnArray = new boolean[6];
 		Arrays.fill(returnArray, false);
+		ArrayList<Card> sortedHand = sortByRank(hand);
 		
-		for(int i = 4; i < 0; i--) 
+		if (sortedHand.get(4).rank() == 14)
 		{
-			if(hand.get(i).rank() == 14)
-			{
-				returnArray[sortedHandIndexes[i]] = true;
-				returnArray[5] = true;
-				return returnArray;
-			}
+			returnArray[sortedHandIndexes[4]] = true;
+			returnArray[5] = true;
+			return returnArray;
 		}
 		
-		return returnArray;
+		else return returnArray;
 	}
 	
 	//30
@@ -1637,12 +1642,12 @@ public String[]  getHandValue(Hand hand, int bet) {
 		char k_suit = ' ';
 		
 			
-		for(int i = 4; i < 0; i--) 
+		for(int i = 4; i > 0; i--) 
 		{
 			if(sortedHand.get(i).rank() == 13)
 			{
 				k_suit = sortedHand.get(i).suit();
-				for(int j = i; j <= 0; j--)
+				for(int j = i; j > 0; j--)
 				{
 					if(sortedHand.get(j).rank() == 10 && sortedHand.get(j).suit() == k_suit )
 					{
@@ -1669,14 +1674,10 @@ public String[]  getHandValue(Hand hand, int bet) {
 		ArrayList<Card> sortedHand = sortByRank(hand);
 		
 			
-		for(int i = 4; i <= 0; i--) 
+		for(int i = 4; i > 0; i--) 
 		{
-			if(sortedHand.get(i).rank() <= 10)
-			{
-				return returnArray;
-			}
-			
-			else if (sortedHand.get(i).rank() > 10 && sortedHand.get(i).rank() < 14)
+	
+			if (sortedHand.get(i).rank() > 10 && sortedHand.get(i).rank() < 14)
 			{
 				returnArray[5] = true;
 				returnArray[sortedHandIndexes[i]] = true;
