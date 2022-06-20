@@ -55,120 +55,221 @@ public class TenSevenDoubleBonus implements GameRules {
 	
 	public boolean[] advice(Hand hand) {
 		
-		System.out.println("inAdvice");
+		//System.out.println("inAdvice");
 		
 		boolean[] returnArray = new boolean[5];
 		boolean[] result = new boolean[6];
 		Arrays.fill(result, false);
 		
 		
-		if(starightFlush_FourOfAKind_RoyalFlush(hand)[5]) 			//1
-			result = starightFlush_FourOfAKind_RoyalFlush(hand); 
+		if(straightFlush_FourOfAKind_RoyalFlush(hand)[5]) 			//1
+			{
+				System.out.println("straightFlush_FourOfAKind_RoyalFlush");
+				result = straightFlush_FourOfAKind_RoyalFlush(hand); 
+			}
 		
 		else if(fourToRoyalFlush(hand)[5]) 							//2
-			result = fourToRoyalFlush(hand); 
+			{
+				System.out.println("fourToRoyalFlush");
+				result = fourToRoyalFlush(hand); 
+			}
 		
 		else if(threeAces(hand)[5]) 								//3
+		{
+			System.out.println("threeAces");
 			result = threeAces(hand); 
+		}
 		
-		else if(staright_Flush_FullHouse(hand)[5]) 					//4
-			result = staright_Flush_FullHouse(hand); 
+		else if(straight_Flush_FullHouse(hand)[5]) 					//4
+		{
+			System.out.println("straight_Flush_FullHouse");
+			result = straight_Flush_FullHouse(hand); 
+		}
 		
 		else if(threeOfAKind(hand)[5]) 								//5
+		{
+			System.out.println("threeOfAKind");
 			result = threeOfAKind(hand); 
+		}
 		
 		else if(fourToStraightFlush(hand)[5]) 						//6
+		{
+			System.out.println("fourToStraightFlush");
 			result = fourToStraightFlush(hand); 
+		}
 		
 		else if(twoPair(hand)[5]) 									//7
+		{
+			System.out.println("twoPair");
 			result = twoPair(hand); 
+		}
 		
-		else if(jacksOrBetter(hand)[5]) 							//8
-			result = jacksOrBetter(hand); 
+		else if(highPair(hand)[5]) 							//8
+		{
+			System.out.println("highPair");
+			result = highPair(hand); 
+		} 
 		
 		else if(fourToFlush(hand)[5]) 								//9
+		{
+			System.out.println("fourToFlush");
 			result = fourToFlush(hand); 
+		} 
 		
 		else if(threeToRoyalFlush(hand)[5]) 						//10
+		{
+			System.out.println("threeToRoyalFlush");
 			result = threeToRoyalFlush(hand); 
+		} 
 		
 		else if(fourToOutsideStraight(hand)[5]) 					//11
+		{
+			System.out.println("fourToOutsideStraight");
 			result = fourToOutsideStraight(hand); 
-		
+		}
 		else if(lowPair(hand)[5]) //12
+		{
+			System.out.println("lowPair");
 			result = lowPair(hand); 
+		}
 		
 		else if(unsuitedAKQJ(hand)[5]) //13
+		{
+			System.out.println("unsuitedAKQJ");
 			result = unsuitedAKQJ(hand); 
+		}
 		
 		else if(threeToStraightFlushType1(hand)[5]) //14
+		{
+			System.out.println("threeToStraightFlushType1");
 			result = threeToStraightFlushType1(hand); 
+		}
 		
 		else if(fourToInsideStraight3HighCards(hand)[5]) //15
+		{
+			System.out.println("fourToInsideStraight3HighCards");
 			result = fourToInsideStraight3HighCards(hand); 
+		}
 		
 		else if(suitedQJ(hand)[5]) //16
+		{
+			System.out.println("suitedQJ");
 			result = suitedQJ(hand); 
+		}
 		
 		else if(threeToFlushWithtwoHighCards(hand)[5]) //17
+		{
+			System.out.println("threeToFlushWithtwoHighCards");
 			result = threeToFlushWithtwoHighCards(hand); 
+		}
 		
 		else if(twoSuitedHighCards(hand)[5]) //18
+		{
+			System.out.println("twoSuitedHighCards");
 			result = twoSuitedHighCards(hand); 
+		}
 		
 		else if(fourToAnInsideStraightWithTwoHighCards(hand)[5]) //19
+		{
+			System.out.println("fourToAnInsideStraightWithTwoHighCards");
 			result = fourToAnInsideStraightWithTwoHighCards(hand); 
+		}
 		
 		else if(threeToStraightFlushType2(hand)[5]) //20
+		{
+			System.out.println("threeToStraightFlushType2");
 			result = threeToStraightFlushType2(hand); 
+		}
 		
 		else if(fourToAnInsideStraightWithOneHighCard(hand)[5]) //21
+		{
+			System.out.println("fourToAnInsideStraightWithOneHighCard");
 			result = fourToAnInsideStraightWithOneHighCard(hand); 
+		}
 		
 		else if(unsuitedKQJ(hand)[5]) //22
+		{
+			System.out.println("unsuitedKQJ");
 			result = unsuitedKQJ(hand); 
+		}
 		
 		else if(suitedJT(hand)[5]) //23
+		{
+			System.out.println("suitedJT");
 			result = suitedJT(hand); 
+		}
+		
 		
 		else if(unsuitedQJ(hand)[5]) //24
+		{
+			System.out.println("unsuitedQJ");
 			result = unsuitedQJ(hand); 
+		}
+		
 		
 		else if(threeToFlushWithOneHighCard(hand)[5]) //25
+		{
+			System.out.println("threeToFlushWithOneHighCard");
 			result = threeToFlushWithOneHighCard(hand); 
+		}
+		
 		
 		else if(suitedQT(hand)[5]) //26
+		{
+			System.out.println("suitedQT");
 			result = suitedQT(hand); 
+		}
+		
 		
 		else if(threeToStraightFlushType3(hand)[5]) //27 
+		{
+			System.out.println("threeToStraightFlushType3");
 			result = threeToStraightFlushType3(hand); 
-		
+		}
 		else if(KQorKJUnsuited(hand)[5]) //28
+		{
+			System.out.println("KQorKJUnsuited");
 			result = KQorKJUnsuited(hand); 
+		}
 		
 		else if(Ace(hand)[5]) //29
+		{
+			System.out.println("Ace");
 			result = Ace(hand); 
+		}
 		
 		else if(KTsuited(hand)[5]) //30
+		{
+			System.out.println("KTsuited");
 			result = KTsuited(hand); 
+		}
 		
 		else if(JackQueenKing(hand)[5]) //31
+		{
+			System.out.println("JackQueenKing");
 			result = JackQueenKing(hand); 
+		}
 		
 		else if(fourToInsideStraightWithNoHighCards(hand)[5]) //32
+		{
+			System.out.println("fourToInsideStraightWithNoHighCards");
 			result = fourToInsideStraightWithNoHighCards(hand); 
+		}
 		
 		else if(threeToAFlushWithNoHighCards(hand)[5]) //33
+		{
+			System.out.println("threeToAFlushWithNoHighCards");
 			result = threeToAFlushWithNoHighCards(hand); 
+		}
 		
-		returnArray =Arrays.copyOfRange(result, 0, 5); 
+		returnArray = Arrays.copyOfRange(result, 0, 5); 
 		
 		return returnArray;
 	}
 	
 	
 
-	public String[]  getHandValue(Hand hand, int bet) {
+public String[]  getHandValue(Hand hand, int bet) {
 		
 		String[] returnArray= new String[2];
 		
@@ -178,57 +279,57 @@ public class TenSevenDoubleBonus implements GameRules {
 		
 		if(royalFlush(hand)[5] ==true) {
 			statRoyalFlush ++ ;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][0] );
+			returnArray[0]= String.valueOf( creditMatrix[0][bet-1] );
 			returnArray[1] = nameArray[0];
 		}
 		else if(straightFlush(hand)[5] ==true) {
 			statStraightFlush++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][1] );
+			returnArray[0]= String.valueOf( creditMatrix[1][bet-1] );
 			returnArray[1] = nameArray[1];
 		}
 		else if(fourAces(hand)[5] ==true) {
 			statFourOfAKind++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][2] );
+			returnArray[0]= String.valueOf( creditMatrix[2][bet-1] );
 			returnArray[1] = nameArray[2];
 		}
 		else if(four2to4(hand)[5] ==true) {
 			statFourOfAKind++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][3] );
+			returnArray[0]= String.valueOf( creditMatrix[3][bet-1] );
 			returnArray[1] = nameArray[3];
 		}
 		else if(four5toK(hand)[5] ==true) {
 			statFourOfAKind++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][4] );
+			returnArray[0]= String.valueOf( creditMatrix[4][bet-1] );
 			returnArray[1] = nameArray[4];
 		}
 		else if(fullHouse(hand)[5] ==true) {
 			statFullHouse++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][5] );
+			returnArray[0]= String.valueOf( creditMatrix[5][bet-1] );
 			returnArray[1] = nameArray[5];
 		}
 		else if(flush(hand)[5] ==true) {
 			statFlush++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][6] );
+			returnArray[0]= String.valueOf( creditMatrix[6][bet-1] );
 			returnArray[1] = nameArray[6];
 		}
 		else if(straight(hand)[5] ==true) {
 			statStraight++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][7] );
+			returnArray[0]= String.valueOf( creditMatrix[7][bet-1] );
 			returnArray[1] = nameArray[7];
 		}
 		else if(threeOfAKind(hand)[5] ==true) {
 			statThreeOfAKind++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][8] );
+			returnArray[0]= String.valueOf( creditMatrix[8][bet-1] );
 			returnArray[1] = nameArray[8];
 		}
 		else if(twoPair(hand)[5] ==true) {
 			statTwoPair++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][9] );
+			returnArray[0]= String.valueOf( creditMatrix[9][bet-1] );
 			returnArray[1] = nameArray[9];
 		}
-		else if(jacksOrBetter(hand)[5] ==true) {
+		else if(highPair(hand)[5] ==true) {
 			statJacksOrBetter++;
-			returnArray[0]= String.valueOf( creditMatrix[bet-1][10] );
+			returnArray[0]= String.valueOf( creditMatrix[10][bet-1] );
 			returnArray[1] = nameArray[10];
 		}
 		
@@ -238,12 +339,12 @@ public class TenSevenDoubleBonus implements GameRules {
 			statTotalWin++;
 		return returnArray;
 	}
-		
+
 	@Override
-	public String getStatistics(int credit) {
+	public String getStatistics(int credit, int bet_sum) {
 
 		return "\nHand             "+statTotalCount+
-		       "\n______________________"+
+		       "\n________"+
 		       "\nJacks or Better  "+statJacksOrBetter+
 		       "\nTwo Pair         "+statTwoPair+
 		       "\nThree Of A Kind  "+statThreeOfAKind+
@@ -254,10 +355,10 @@ public class TenSevenDoubleBonus implements GameRules {
 		       "\nStraight Flush   "+statStraightFlush+
 		       "\nRoyal Flush      "+statRoyalFlush+
 		       "\nOther            "+statOther+
-		       "\n______________________"+
+		       "\n________"+
 		       "\nTotal            "+statTotalWin+
-		       "\n______________________"+
-		       "\nCredit           "+credit+"   "+(credit / initialCredit);
+		       "\n________"+
+		       "\nCredit           "+credit+"   "+(((credit-initialCredit)/(bet_sum))*100) + "% \n";
 	}
 	
 	private boolean[] royalFlush(Hand hand) {
@@ -267,14 +368,15 @@ public class TenSevenDoubleBonus implements GameRules {
 		
 		if(flush(hand)[5]) {
 			for(int i=0; i<5 ;i++) {
-				if(hand.get(i).rank() > 9) {
-					continue;
+				if(hand.get(i).rank() <= 9) {
+					Arrays.fill(returnArray,false) ;
+					return returnArray;
 				}
 				else {
-					Arrays.fill(returnArray,false) ;
-					break;
+					continue;
 				}
 			}
+			Arrays.fill(returnArray,true) ;
 		}		
 		return returnArray;
 		
@@ -475,8 +577,30 @@ public class TenSevenDoubleBonus implements GameRules {
 	private boolean[] twoPair(Hand hand) {
 		boolean[] returnArray = new boolean[6];
 		ArrayList<Card> sortedHand = sortByRank(hand);
+		System.out.println("Sorted: "+sortedHand);
+		Arrays.fill(returnArray,false);
+		int pairCounter = 0;
 		
-		if(sortedHand.get(0).rank() == sortedHand.get(1).rank()) {
+		for(int i = 0; i < 4; i++)
+		{
+			if(sortedHand.get(i).rank() == sortedHand.get(i+1).rank())
+			{
+				pairCounter++;
+				returnArray[sortedHandIndexes[i]] = true;
+				returnArray[sortedHandIndexes[i+1]] = true;
+				i++;
+				
+				if(pairCounter == 2)
+				{
+					returnArray[5] = true;
+					return returnArray;
+				}
+			}
+		}
+		
+		return returnArray;
+		
+		/*if(sortedHand.get(0).rank() == sortedHand.get(1).rank()) {
 			if(sortedHand.get(2).rank() == sortedHand.get(3).rank()) {
 				Arrays.fill(returnArray,true) ;
 				returnArray[sortedHandIndexes[4]]=false;	
@@ -495,17 +619,17 @@ public class TenSevenDoubleBonus implements GameRules {
 		else
 			Arrays.fill(returnArray, false);
 		
-		return returnArray;
+		return returnArray;*/
 
 		
 	}
 	
-	private boolean[] jacksOrBetter(Hand hand) {
+	private boolean[] highPair(Hand hand) {
 		boolean[] returnArray = new boolean[6];
 		ArrayList<Card> sortedHand = sortByRank(hand);
 		for(int i = 0; i < 4 ; i++) {
 			Arrays.fill(returnArray,false) ;
-			if(sortedHand.get(i).rank() >10) {
+			if(sortedHand.get(i).rank() > 10) {
 				if(sortedHand.get(i).rank()==sortedHand.get(i+1).rank()) {
 					
 					returnArray[5]=true;	
@@ -524,10 +648,10 @@ public class TenSevenDoubleBonus implements GameRules {
 	private ArrayList<Card> sortByRank(Hand hand) {
 		int auxIndex = 0;
 
-		ArrayList<Card> aux = new ArrayList<Card>();
+		ArrayList<Card> aux = new ArrayList<Card>(hand._getHand());
 
-		sortedHandIndexes =  Arrays.copyOfRange(_sortedHandIndexes, 0, 5); ;
-		aux = hand._getHand();
+		sortedHandIndexes =  Arrays.copyOfRange(_sortedHandIndexes, 0, 5);
+		//aux = hand._getHand();
 				
 		
 		for (int i = 0;i < 5; i++) {
@@ -548,9 +672,9 @@ public class TenSevenDoubleBonus implements GameRules {
 	
 	private ArrayList<Card> sortBySuit(Hand hand){
 		int auxIndex = 0;
-		ArrayList<Card> aux = new ArrayList<Card>();
-		sortedHandIndexes =  Arrays.copyOfRange(_sortedHandIndexes, 0, 5); ;
-		aux = hand._getHand();
+		ArrayList<Card> aux = new ArrayList<Card>(hand._getHand());
+		sortedHandIndexes =  Arrays.copyOfRange(_sortedHandIndexes, 0, 5);
+		//aux = hand._getHand();
 
 		for (int i = 0;i < 5; i++) {
 			
@@ -570,7 +694,7 @@ public class TenSevenDoubleBonus implements GameRules {
 	}
 	
 	//1
-	private boolean[] starightFlush_FourOfAKind_RoyalFlush(Hand hand) {
+	private boolean[] straightFlush_FourOfAKind_RoyalFlush(Hand hand) {
 		boolean[] returnArray = new boolean[6];
 		boolean[] ret = new boolean[6];
 		returnArray = straightFlush(hand);
@@ -595,6 +719,7 @@ public class TenSevenDoubleBonus implements GameRules {
 		if(returnArray[5]) {
 			ret = returnArray;
 		}
+
 		return ret;	
 	}
 	
@@ -602,25 +727,31 @@ public class TenSevenDoubleBonus implements GameRules {
 	///2
 	private boolean[] fourToRoyalFlush(Hand hand) {
 		ArrayList<Card> sortedHand = sortBySuit(hand);
-		System.out.println(sortedHand);
 		boolean[] returnArray = new boolean[6];
-		if(sortedHand.get(0).suit() == sortedHand.get(3).suit()) {
+		if(sortedHand.get(3).suit() == sortedHand.get(0).suit()) 
+		{
 			Arrays.fill(returnArray,true);
-			returnArray[sortedHandIndexes[4]]=false;	
-			for(int i = 0 ; i < 4; i++) {	
-					if(sortedHand.get(i).rank()<=9) {
-						Arrays.fill(returnArray, false);
-						break;
-					}
+			returnArray[sortedHandIndexes[4]]=false;
+			
+			for(int i = 3 ; i >= 0; i--) 
+			{	
+				if(sortedHand.get(i).rank() <= 9) 
+				{
+					Arrays.fill(returnArray, false);
+					break;
+				}
 				
 			}
 			
 		}
-		else if(	sortedHand.get(1).suit() == sortedHand.get(4).suit()) {
+		else if(sortedHand.get(4).suit() == sortedHand.get(1).suit()) 
+		{
 			Arrays.fill(returnArray,true);
 			returnArray[sortedHandIndexes[0]]=false;	
-			for(int i = 1 ; i < 5; i++) {	
-					if(sortedHand.get(i).rank()<=9) {
+			for(int i = 4 ; i >= 1; i--) 
+			{	
+					if(sortedHand.get(i).rank()<=9) 
+					{
 						Arrays.fill(returnArray, false);
 						break;
 					}
@@ -638,10 +769,11 @@ public class TenSevenDoubleBonus implements GameRules {
 		boolean[] returnArray = new boolean[6];
 		Arrays.fill(returnArray, false);
 
-		if(sortedHand.get(2).rank()==14) {
+		if(sortedHand.get(2).rank()==14) 
+		{
 			Arrays.fill(returnArray, true);
-			returnArray[0]=false;
-			returnArray[1]=false;
+			returnArray[sortedHandIndexes[0]] = false;
+			returnArray[sortedHandIndexes[1]] = false;
 			
 		}
 		return returnArray;
@@ -649,7 +781,7 @@ public class TenSevenDoubleBonus implements GameRules {
 	}
 		
 	///4
-	private boolean[] staright_Flush_FullHouse(Hand hand) {
+	private boolean[] straight_Flush_FullHouse(Hand hand) {
 		boolean[] returnArray = new boolean[6];
 		boolean[] ret = new boolean[6];
 		Arrays.fill(ret, false);
@@ -683,21 +815,26 @@ public class TenSevenDoubleBonus implements GameRules {
 		boolean[] returnArray = new boolean[6];
 		Arrays.fill(returnArray, false);
 	
-		if(fourToFlush[5]) {
-			if(fourToOutsideStraight[5]) {
-				if(fourToFlush == fourToOutsideStraight) {
+		if(fourToFlush[5]) 
+		{
+			if(fourToOutsideStraight[5]) 
+			{
+				if(Arrays.equals(fourToOutsideStraight, fourToFlush)) 
+				{
 					returnArray = fourToFlush;
 				}		
 			}
-			else
-			if(fourToAnInsideStraight[5]) {
-				if(fourToFlush == fourToAnInsideStraight) {
+			else if(Arrays.equals(fourToAnInsideStraight, fourToFlush)) 
+			{
+				if(fourToFlush == fourToAnInsideStraight) 
+				{
 					returnArray = fourToFlush;
 				}			
 			}
 		}
 		return returnArray;	
 	}
+	
 	
 	///7 is twoPair
 	
@@ -773,23 +910,71 @@ public class TenSevenDoubleBonus implements GameRules {
 	private boolean[] fourToOutsideStraight(Hand hand) {
 		ArrayList<Card> sortedHand = sortByRank(hand);
 		boolean[] returnArray = new boolean[6];
-		int smallVal=1;
+		Arrays.fill(returnArray, true);
+		boolean flag = false;
+		
+		if(sortedHand.get(4).rank() == 14)
+		{
+			Arrays.fill(returnArray, false);
+			return returnArray;
+		}
+		
+		for(int i = 0; i < 3; i++)
+		{
+			if(sortedHand.get(i).rank() + 1 != sortedHand.get(i+1).rank())
+			{
+				flag = true;
+				break;
+			}
+		}
+		
+		if(!flag)
+		{
+			returnArray[sortedHandIndexes[4]] = false;
+			return returnArray;
+		}
+		
+		flag = false;
+		for(int i = 4; i > 1; i--)
+		{
+			if(sortedHand.get(i).rank()-1 != sortedHand.get(i-1).rank())
+			{
+				flag = true;
+				break;
+			}
+		}
+		
+		if(!flag)
+		{
+			returnArray[sortedHandIndexes[0]] = false;
+			return returnArray;
+		}
+		Arrays.fill(returnArray, false);
+		return returnArray;
+		/*int smallVal=1;
 
 		
 		int testRank = sortedHand.get(0).rank()+1;
-		for(int i = 1; i < 4; i++) {
-			if(sortedHand.get(i).rank()!= testRank) {
+		for(int i = 1; i < 4; i++) 
+		{
+			if(sortedHand.get(i).rank()!= testRank) 
+			{
 				smallVal = 0;
 				break;
-			}else testRank++;
+			}
+			else testRank++;
 		}
-		if(smallVal==0) {
+		if(smallVal==0) 
+		{
 			testRank = sortedHand.get(1).rank()+1;
-			for(int i = 2; i < 5; i++) {
-				if(sortedHand.get(i).rank()!= testRank) {
+			for(int i = 2; i < 5; i++) 
+			{
+				if(sortedHand.get(i).rank()!= testRank) 
+				{
 					Arrays.fill(returnArray, false);
 					break;
-				}else testRank++;
+				}
+				else testRank++;
 			}
 			Arrays.fill(returnArray, true);
 			returnArray[sortedHandIndexes[0]]=false;
@@ -798,7 +983,7 @@ public class TenSevenDoubleBonus implements GameRules {
 			Arrays.fill(returnArray, true);
 			returnArray[sortedHandIndexes[4]]=false;
 		}
-		return returnArray;
+		return returnArray;*/
 		
 	}
 	
@@ -839,29 +1024,50 @@ public class TenSevenDoubleBonus implements GameRules {
 	
 	//14
 	private boolean[] threeToStraightFlushType1(Hand hand) {
-		ArrayList<Card> sortedHand = sortBySuit(hand);
 		boolean[] returnArray = new boolean[6];
 		Arrays.fill(returnArray, false);
 		
 		boolean aux_array[];
 		int highCounter = 0;
+		int gapCounter = 0;
+		int trueCounter = 0;
+		boolean foundFirst = false;
 		
-		aux_array = ThreeToStraight(hand);
+		aux_array = threeToStraightFlush(hand);
 		
 		if (aux_array[5] == true)
 		{
-			for(int i = 4; i >= 0; i--) 
-			 {
+			for(int i = 4; i >= 1; i--) 
+			{
+				if (aux_array[i])
+				{
+					if(!foundFirst)
+					{
+						foundFirst = true;
+					}
+					trueCounter++;
+					
+					if(trueCounter == 3)
+					{
+						break;
+					}
+				}
+				
+				if(foundFirst && aux_array[i] != aux_array[i-1])
+				{
+					gapCounter++;
+					i--;
+				}
+				
 				if(aux_array[i] == true && hand.get(i).rank() > 10)
 				{
 					highCounter++;
 				}
-				
-				if (highCounter >= 3)
-				{
-					return aux_array;
-				}
 			 }
+			if(highCounter >= gapCounter)
+			{
+				return aux_array;
+			}
 		}
 		
 		else return returnArray;
@@ -1008,8 +1214,76 @@ public class TenSevenDoubleBonus implements GameRules {
 		
 	//20
 	private boolean[] threeToStraightFlushType2(Hand hand) {
-	
-			ArrayList<Card> sortedHand = sortBySuit(hand);
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		
+		boolean aux_array[];
+		int highCounter = 0;
+		int gapCounter = 0;
+		int trueCounter = 0;
+		boolean foundFirst = false;
+		
+		aux_array = threeToStraightFlush(hand);
+		
+		if (aux_array[5] == true)
+		{
+			for(int i = 4; i >= 1; i--) 
+			{
+				if (aux_array[i])
+				{
+					if(!foundFirst)
+					{
+						foundFirst = true;
+					}
+					trueCounter++;
+					
+					if(trueCounter == 3)
+					{
+						break;
+					}
+				}
+				
+				if(foundFirst && aux_array[i] != aux_array[i-1])
+				{
+					gapCounter++;
+					i--;
+				}
+				
+				if(aux_array[i] == true && hand.get(i).rank() > 10)
+				{
+					highCounter++;
+				}
+			 }
+			
+			//Errado - TODO
+			if( gapCounter == 1 || (gapCounter == 2 && highCounter == 1) ||
+				(aux_array[0] && hand.get(0).rank() == 2 && aux_array[2] && hand.get(2).rank() == 4))
+			{
+				return aux_array;
+			}
+			
+			for(int i = 0; i < 5; i++) 
+			{
+				if (aux_array[i] && hand.get(i).rank() == 14)
+				{
+					for(int j = 0; j < 5; j++) 
+					{
+						if (j==i) j++;
+						else
+						{
+							
+						}
+					}
+				}
+			}
+			
+
+		}
+		
+		else return returnArray;
+		
+		return returnArray;
+			/*ArrayList<Card> sortedHand = sortBySuit(hand);
 			boolean[] returnArray = new boolean[6];
 			Arrays.fill(returnArray, false);
 			
@@ -1017,7 +1291,7 @@ public class TenSevenDoubleBonus implements GameRules {
 			int highCounter = 0;
 			int auxCounter = 0;
 			
-			aux_array = ThreeToStraight(hand);
+			aux_array = threeToStraightFlush(hand);
 			
 			if (aux_array[5] == true)
 			{
@@ -1050,7 +1324,7 @@ public class TenSevenDoubleBonus implements GameRules {
 			
 			else return returnArray;
 			
-			return returnArray;
+			return returnArray;*/
 		}
 	
 	
@@ -1224,7 +1498,7 @@ public class TenSevenDoubleBonus implements GameRules {
 
 			boolean aux_array[];
 			
-			aux_array = ThreeToStraight(hand);
+			aux_array = threeToStraightFlush(hand);
 			
 			if (aux_array[5] == true)
 			{
@@ -1445,7 +1719,8 @@ public class TenSevenDoubleBonus implements GameRules {
 	}
 
 
-	private boolean[] ThreeToStraight(Hand hand) {
+	private boolean[] threeToStraightFlush(Hand hand) {
+		
 		boolean[] returnArray = new boolean[6];
 		Arrays.fill(returnArray, false);
 		ArrayList<Card> sortedHand = sortByRank(hand);
@@ -1460,35 +1735,46 @@ public class TenSevenDoubleBonus implements GameRules {
 			 {
 				for(int j = 0; j < 5; j++)
 				{ 
-					if(5 - sortedHand.get(j).rank() <= 3)
+					if(5 - sortedHand.get(j).rank() >= 0)
 					{
-						returnArray[sortedHandIndexes[i]]=true;
-						returnArray[sortedHandIndexes[j]]=true;
-						counter++;
+						if(sortedHand.get(i).suit() == sortedHand.get(j).suit())
+						 {
+							returnArray[sortedHandIndexes[i]]=true;
+							returnArray[sortedHandIndexes[j]]=true;
+							counter++;
+						 }
 						
-						if (counter == 3)
+						if (counter == 2)
 						{
+							returnArray[5] = true;
 							return returnArray;
 						}
 					}
 				}
 			 }
-			 else for(int j = i-1; j > 0; j--)
-			 {
-				
-				 if(sortedHand.get(i).rank()-sortedHand.get(j).rank() >= 3)
+			 else 
+			 { 
+				 for(int j = i-1; j >= 0; j--)
 				 {
-					returnArray[sortedHandIndexes[i]]=true;
-					returnArray[sortedHandIndexes[j]]=true;
-					counter++;
 					
-					if (counter == 3)
-					{
-						return returnArray;
+					 if(sortedHand.get(i).rank() - sortedHand.get(j).rank() <= 4)
+					 {
+						 if(sortedHand.get(i).suit() == sortedHand.get(j).suit())
+						 {
+							returnArray[sortedHandIndexes[i]]=true;
+							returnArray[sortedHandIndexes[j]]=true;
+							counter++;
+						 }
+	
+						if (counter == 2)
+						{
+							returnArray[5] = true;
+							return returnArray;
+						}
 					}
-				}
+				 }
+			 	counter = 0;
 			 }
-			
 			Arrays.fill(returnArray, false);
 		}
 		 return returnArray;

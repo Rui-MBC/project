@@ -3,6 +3,7 @@ package cards;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Deck {
 
@@ -12,7 +13,30 @@ public class Deck {
 	
 	public Deck(String fileName) {
 		System.out.println(fileName);
-		File file = new File( "../Decks/"+ fileName);
+		String curr_line;
+		String[] parts;
+		File file_cmd = new File( "../Decks/" + fileName);
+		Scanner deck_list = null;
+		try {
+			deck_list = new Scanner(file_cmd);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		//Cmd file
+		curr_line = deck_list.nextLine();
+		parts = curr_line.split(" ");
+		
+		for ( int i = 0; i < parts.length; i++)
+		{
+			deck.add(new Card(parts[i].charAt(0), parts[i].charAt(1)));
+			System.out.print(parts[i].charAt(0));
+			System.out.print(parts[i].charAt(1));
+			System.out.print(" ");
+		}
+		
+		System.out.print("\n");
+		/*File file = new File( "../Decks/"+ fileName);
 		char[] ch  = null;
 		try (FileReader fr = new FileReader(file))
         {
@@ -31,7 +55,7 @@ public class Deck {
 		}
 		
 
-		/*
+		
 		deck.add(new Card('2', 'H'));
 		deck.add(new Card('3', 'H'));
 		deck.add(new Card('4', 'H'));

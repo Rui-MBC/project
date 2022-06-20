@@ -54,8 +54,8 @@ public class Simulation implements Game {
 			{
 				player.addcredit(Integer.parseInt(results[0]));
 			}
-			if(i==nbdeals) {
-				instance.statistics(player.credit());
+			if(i==nbdeals-1) {
+				System.out.print(instance.statistics(player.credit(),player.getBetSum()));
 			}
 		}
 	}

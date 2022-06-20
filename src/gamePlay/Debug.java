@@ -198,7 +198,7 @@ public class Debug implements Game {
 			else if (parts[i].contains("s"))
 			{
 				//call statistics method
-				System.out.println(instance.statistics(player.credit()));
+				System.out.println(instance.statistics(player.credit(),player.getBetSum()));
 			}
 			
 			else if (parts[i].contains(".*[a-zA-Z].*"))

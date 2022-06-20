@@ -6,6 +6,7 @@ public class Player {
 	private int credit;
 	private int last_bet;
 	private Hand hand;
+	private int bet_sum=0;
 
 
 	public Player(int _credit) {
@@ -20,11 +21,13 @@ public class Player {
 	}
 	public void bet() {
 		credit -= last_bet;
+		bet_sum += last_bet;
 	}
 	
 	public void bet(int value) {
 		last_bet = value;
 		credit -= value;
+		bet_sum += value;
 	}
 	
 	public int credit() {
@@ -58,6 +61,9 @@ public class Player {
 	public void printBet() {
 			System.out.println("player is betting "+last_bet);
 	}
-
+	
+	public int getBetSum() {
+		return bet_sum;
+	}
 
 }

@@ -26,9 +26,9 @@ public class GameInstance {
 		return 	rules.advice(hand);
 	}
 	
-	public String statistics(int credit)
+	public String statistics(int credit, int betSum)
 	{
-		return 	rules.getStatistics(credit);
+		return 	rules.getStatistics(credit,betSum);
 	}
 	
 	public String[] getHandValue(Hand _hand, int bet)

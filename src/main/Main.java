@@ -13,7 +13,7 @@ public class Main {
 		
 		Game game = null;
 		if(args[0].equals( "-s")) {
-
+			game = new Simulation(args);
 		}
 		if(args[0].equals( "-d")) {
 			 game = new Debug(args);	
