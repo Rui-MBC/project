@@ -4,21 +4,24 @@
 package cards;
 
 /**
- * @author ruimbc
- *
+ * Provides utilities to create and handle a card
+ * 
+ * @author Group 46
  */
-public class Card {
-
-	/**
-	 * 
-	 */
-	
+public class Card {	
 	private  char suit;
 	private  char value;
 	private int rank;
 	
+	/**
+	 * Card constructor <br>
+	 * Initialize a card with a suit, value and rank <br>
+	 * (The rank goes from 2 to 14)
+	 * @param _value Card value
+	 * @param _suit Card suit
+	 */
 	public Card(char _value, char _suit) {
-		// TODO Auto-generated constructor stub
+
 	suit = _suit;
 	value = _value;
 	if (value =='T') {
@@ -41,17 +44,34 @@ public class Card {
 	
 	}
 	
+	/**
+	 * Returns card's value
+	 * @return Card's value
+	 */
 	public char value () {
 		return value;
 	}
 	
+	/**
+	 * Returns card's suit
+	 * @return Card's suit
+	 */
 	public char suit () {
 		return suit;
 	}
+	
+	/**
+	 * Returns card's rank
+	 * @return Card's rank
+	 */
 	public int rank() {
 		return rank;
 	}
 	
+	/**
+	 * Returns a String with the format "cardValue_cardSuit"
+	 * @return String of the card
+	 */
 	public String toString() {
 		return ""+value+suit;
 	}

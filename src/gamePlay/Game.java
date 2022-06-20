@@ -1,8 +1,8 @@
 package gamePlay;
 /**
- * @author Group 46
- * 
  * Game Interface
+ * 
+ * @author Group 46
  */
 public interface Game {
 	/**

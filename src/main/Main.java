@@ -4,9 +4,9 @@
 package main;
 import gamePlay.*;
 /**
- * @author Group 46
- * 
  * Main Class to run the application
+ * 
+ * @author Group 46
  */
 public class Main {
 	/**

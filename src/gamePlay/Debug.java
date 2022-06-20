@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 import cards.*;
 /**
- * @author Group 46
- * 
  * Debug game mode
+ * 
+ * @author Group 46
  */
 
 public class Debug implements Game {
@@ -33,6 +33,7 @@ public class Debug implements Game {
 	 */
 	@Override
 	public void run() {
+		// TODO Auto-generated method stub
 		String curr_line;
 		String[] parts;
 		int i = 0;
@@ -74,8 +75,8 @@ public class Debug implements Game {
 					{
 						aux = Integer.parseInt(parts[i+1]);
 						if(0 < aux && aux <= 5) {
-							player.bet(aux);
-							player.printBet();
+							/*player.bet(aux);
+							player.printBet();*/
 						}
 						else {
 							System.out.println("b: illegal amount");
@@ -84,9 +85,24 @@ public class Debug implements Game {
 					}
 					else
 					{
-						player.bet();
+						aux = 0;
+						/*player.bet();
+						player.printBet();*/
+						
+					}
+					System.out.print("\n-cmd b");
+					if (aux != 0)
+					{
+						System.out.print(" "+aux+"\n");
+						player.bet(aux);
 						player.printBet();
 						
+					}
+					else 
+					{
+						System.out.print("\n");
+						player.bet();
+						player.printBet();		
 					}
 					lastCmd = "b";
 				}
@@ -95,6 +111,7 @@ public class Debug implements Game {
 					
 			else if (parts[i].contains("$"))
 			{
+				System.out.println("\n-cmd $");
 				int credit =player.credit();
 				System.out.println("Player's credit is " + credit);
 			}
@@ -110,9 +127,11 @@ public class Debug implements Game {
 				}
 				else 
 				{
+					System.out.println("\n-cmd d");
 					ArrayList<Card> rcvd_cards = instance.deal(5);
 					player.setHand(rcvd_cards);
 					player.printHand();
+
 					lastCmd = "d";
 				}
 
@@ -151,6 +170,18 @@ public class Debug implements Game {
 						}
 					}
 					
+					System.out.print("\n-cmd h");
+					for(j=0;j< 5; j++)
+					{
+						if(hold_aux[j])
+						{
+							System.out.print(" "+(j+1));
+						}
+						
+					}
+					System.out.print("\n");
+					lastCmd = "h";
+					
 					ArrayList<Card> rcvd_cards = instance.deal(5-hold_amount);
 					player.setHand(rcvd_cards,hold_aux);
 					player.printHand();
@@ -164,10 +195,9 @@ public class Debug implements Game {
 					else
 					{
 						player.addcredit(Integer.parseInt(result_aux[0]));
-						System.out.println("player wins with a " + result_aux[1] + " and his credit is " + player.credit()+"\n");
+						System.out.println("player wins with a " + result_aux[1] + " and his credit is " + player.credit());
 					}
-						
-					lastCmd = "h";
+					
 				}
 				
 			}
@@ -176,7 +206,7 @@ public class Debug implements Game {
 			{
 
 
-				//call advice method
+				System.out.println("\n-cmd a");
 				hold_aux = instance.advice(player.getHandObject());
 				hold_flag = 0;
 				for(j=0; j<5; j++)
@@ -211,6 +241,7 @@ public class Debug implements Game {
 			else if (parts[i].contains("s"))
 			{
 				//call statistics method
+				System.out.print("\n-cmd s");
 				System.out.println(instance.statistics(player.credit(),player.getBetSum()));
 			}
 			

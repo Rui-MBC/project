@@ -1,11 +1,13 @@
 package gamePlay;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+
 
 import cards.*;
-
+/**
+ * Simulation game mode
+ * 
+ * @author Group 46
+ */
 
 public class Simulation implements Game {
 	
@@ -13,7 +15,11 @@ public class Simulation implements Game {
 	private GameInstance instance;
 	int bet;
 	int nbdeals;
-	
+	/**
+	 * Simulation constructor
+	 * Initialize the Player, GameInstance, sets the bet value and the number of deals
+	 * @param args Input arguments of application
+	 */
 	public Simulation(String[] args) {
 		instance = new GameInstance("OG.deck",Integer.parseInt(args[1]));
 		player = new Player(Integer.parseInt(args[1]));
@@ -22,7 +28,7 @@ public class Simulation implements Game {
 	}
 
 	/**
-	 *
+	 * Plays the game in Simulation Mode
 	 */
 	@Override
 	public void run() {

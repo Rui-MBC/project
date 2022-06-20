@@ -36,7 +36,7 @@ public class GameInstance {
 	/**
 	 * Gets the game advice 
 	 * @param hand players hand to analyze
-	 * @return A boolean array. If true then keep that index card in hand, if false is to discard 
+	 * @return A boolean array. If true then hold that index card in hand, else discard 
 	 */
 	public boolean[] advice(Hand hand)
 	{
