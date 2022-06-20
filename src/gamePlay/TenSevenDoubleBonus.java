@@ -1028,67 +1028,111 @@ public String[]  getHandValue(Hand hand, int bet) {
 		Arrays.fill(returnArray, false);
 		
 		boolean aux_array[];
+		
+		int values[] = new int[3];
 		int highCounter = 0;
 		int gapCounter = 0;
 		int trueCounter = 0;
+		
 		boolean foundFirst = false;
+		boolean foundAce = false;
+		int twoThreeFourCounter = 0;
+		int aceLowCounter = 0;
 		
 		aux_array = threeToStraightFlush(hand);
-		
+		/*for(int i = 0; i <= 4; i++) 
+		{
+			System.out.print(aux_array[i]+" ");
+		}*/
 		if (aux_array[5] == true)
 		{
-			for(int i = 4; i >= 1; i--) 
+			for(int i = 4; i >= 0; i--) 
 			{
+				//System.out.print(i);
 				if (aux_array[i])
 				{
+					values[trueCounter] = hand.get(i).rank();
+					//System.out.println("=True= "+hand.get(i).rank());
+					trueCounter++;
 					if(!foundFirst)
 					{
 						foundFirst = true;
 					}
-					trueCounter++;
+					
+					if(hand.get(i).rank() > 10)
+					{
+						highCounter++;
+					}
+					
+					if(hand.get(i).rank() == 14)
+					{
+						foundAce = true;
+					}
+					
+					if(hand.get(i).rank() <= 5)
+					{
+						aceLowCounter++;
+						if (hand.get(i).rank() < 5)
+						{
+							twoThreeFourCounter++;
+						}
+					}
 					
 					if(trueCounter == 3)
 					{
 						break;
 					}
 				}
-				
-				if(foundFirst && aux_array[i] != aux_array[i-1])
-				{
-					gapCounter++;
-					i--;
-				}
-				
-				if(aux_array[i] == true && hand.get(i).rank() > 10)
-				{
-					highCounter++;
-				}
 			 }
-			if(highCounter >= gapCounter)
+			
+			Arrays.sort(values);
+			for(int i = 0; i < 2; i++) 
+			{
+				if(values[i+1] != (values[i]+1))
+				{
+					gapCounter = gapCounter + (values[i+1]-values[i]-1);
+				}
+			}
+			
+			if(foundAce && aceLowCounter == 2)
+			{
+				return returnArray;
+			}
+			
+			else if(twoThreeFourCounter == 3)
+			{
+				return returnArray;
+			}
+			
+			else if (highCounter >= gapCounter)
 			{
 				return aux_array;
 			}
+			
+
 		}
 		
 		else return returnArray;
 		
 		return returnArray;
-	}
-		
+	}		
 	//15
 	private boolean[] fourToInsideStraight3HighCards(Hand hand) {
 		boolean[] fourToAnInsideStraight = fourToAnInsideStraight(hand);
+		System.out.println("fourToAnInsideStaight is "+fourToAnInsideStraight[5]);
 		boolean[] returnArray = new boolean[6];
 		int highCardCounter = 0;
 		Arrays.fill(returnArray, false);
 		if(!fourToAnInsideStraight[5]) 
 			return returnArray;
+		ArrayList<Card> handCards = hand._getHand();
 		for (int i = 0; i < 5; i++) {
 			if(fourToAnInsideStraight[i]) {
-				if(hand.get(i).rank()<10) highCardCounter++;
+				if(handCards.get(i).rank()>10) {
+					highCardCounter++;
+				}
 			}
-		}
-		
+		}		
 		if(highCardCounter > 2)
 			returnArray = fourToAnInsideStraight;
 		
@@ -1202,7 +1246,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 			return returnArray;
 		for (int i = 0; i < 5; i++) {
 			if(fourToAnInsideStraight[i]) {
-				if(hand.get(i).rank()<10) highCardCounter++;
+				if(hand.get(i).rank()>10) highCardCounter++;
 			}
 		}
 		
@@ -1218,116 +1262,93 @@ public String[]  getHandValue(Hand hand, int bet) {
 		Arrays.fill(returnArray, false);
 		
 		boolean aux_array[];
+		
+		int values[] = new int[3];
 		int highCounter = 0;
 		int gapCounter = 0;
 		int trueCounter = 0;
+		
 		boolean foundFirst = false;
+		boolean foundAce = false;
+		int twoThreeFourCounter = 0;
+		int aceLowCounter = 0;
 		
 		aux_array = threeToStraightFlush(hand);
-		
+		/*for(int i = 0; i <= 4; i++) 
+		{
+			System.out.print(aux_array[i]+" ");
+		}*/
 		if (aux_array[5] == true)
 		{
-			for(int i = 4; i >= 1; i--) 
+			for(int i = 4; i >= 0; i--) 
 			{
+				//System.out.print(i);
 				if (aux_array[i])
 				{
+					values[trueCounter] = hand.get(i).rank();
+					//System.out.println("=True= "+hand.get(i).rank());
+					trueCounter++;
 					if(!foundFirst)
 					{
 						foundFirst = true;
 					}
-					trueCounter++;
+					
+					if(hand.get(i).rank() > 10)
+					{
+						highCounter++;
+					}
+					
+					if(hand.get(i).rank() == 14)
+					{
+						foundAce = true;
+					}
+					
+					if(hand.get(i).rank() <= 5)
+					{
+						aceLowCounter++;
+						if (hand.get(i).rank() < 5)
+						{
+							twoThreeFourCounter++;
+						}
+					}
 					
 					if(trueCounter == 3)
 					{
 						break;
 					}
 				}
-				
-				if(foundFirst && aux_array[i] != aux_array[i-1])
-				{
-					gapCounter++;
-					i--;
-				}
-				
-				if(aux_array[i] == true && hand.get(i).rank() > 10)
-				{
-					highCounter++;
-				}
 			 }
 			
-			//Errado - TODO
-			if( gapCounter == 1 || (gapCounter == 2 && highCounter == 1) ||
-				(aux_array[0] && hand.get(0).rank() == 2 && aux_array[2] && hand.get(2).rank() == 4))
+			Arrays.sort(values);
+			for(int i = 0; i < 2; i++) 
+			{
+				if(values[i+1] != (values[i]+1))
+				{
+					gapCounter = gapCounter + (values[i+1]-values[i]-1);
+				}
+			}
+			
+			if( gapCounter == 1 || (gapCounter == 2 && highCounter == 1))
 			{
 				return aux_array;
 			}
 			
-			for(int i = 0; i < 5; i++) 
+			else if(foundAce && aceLowCounter == 2)
 			{
-				if (aux_array[i] && hand.get(i).rank() == 14)
-				{
-					for(int j = 0; j < 5; j++) 
-					{
-						if (j==i) j++;
-						else
-						{
-							
-						}
-					}
-				}
+				return aux_array;
 			}
 			
+			else if(twoThreeFourCounter == 3)
+			{
+				return aux_array;
+			}
 
 		}
 		
 		else return returnArray;
 		
 		return returnArray;
-			/*ArrayList<Card> sortedHand = sortBySuit(hand);
-			boolean[] returnArray = new boolean[6];
-			Arrays.fill(returnArray, false);
-			
-			boolean aux_array[];
-			int highCounter = 0;
-			int auxCounter = 0;
-			
-			aux_array = threeToStraightFlush(hand);
-			
-			if (aux_array[5] == true)
-			{
-				if(sortedHand.get(4).rank() > 10)
-				{
-					return aux_array;
-				}
-				
-				else if (sortedHand.get(4).rank() == 14)
-				{
-					for(int i = 0; i < 5; i++)
-					{
-						if(aux_array[i] && hand.get(i).rank() <= 5)
-						{
-							return aux_array;
-						}
-					}
-				}
-				
-				else if(sortedHand.get(0).rank() == 2 && sortedHand.get(1).rank() == 3 && sortedHand.get(2).rank() == 4)
-				{
-					if(sortedHand.get(0).suit() == sortedHand.get(1).suit() && sortedHand.get(1).suit() == sortedHand.get(2).suit())
-					{
-						return aux_array;
-					}
-				}
-		
-
-			}
-			
-			else return returnArray;
-			
-			return returnArray;*/
-		}
-	
-	
+	}	
 	//21
 	private boolean[] fourToAnInsideStraightWithOneHighCard(Hand hand) {
 		boolean[] fourToAnInsideStraight = fourToAnInsideStraight(hand);
@@ -1338,7 +1359,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 			return returnArray;
 		for (int i = 0; i < 5; i++) {
 			if(fourToAnInsideStraight[i]) {
-				if(hand.get(i).rank()<10) highCardCounter++;
+				if(hand.get(i).rank()>10) highCardCounter++;
 			}
 		}
 		
@@ -1492,33 +1513,74 @@ public String[]  getHandValue(Hand hand, int bet) {
 	//27
 	private boolean[] threeToStraightFlushType3(Hand hand) {
 	
-			ArrayList<Card> sortedHand = sortBySuit(hand);
-			boolean[] returnArray = new boolean[6];
-			Arrays.fill(returnArray, false);
-
-			boolean aux_array[];
-			
-			aux_array = threeToStraightFlush(hand);
-			
-			if (aux_array[5] == true)
+		boolean[] returnArray = new boolean[6];
+		Arrays.fill(returnArray, false);
+		
+		boolean aux_array[];
+		
+		int values[] = new int[3];
+		int highCounter = 0;
+		int gapCounter = 0;
+		int trueCounter = 0;
+		
+		boolean foundFirst = false;
+		
+		aux_array = threeToStraightFlush(hand);
+		System.out.println("3ToStr= "+aux_array[5]);
+		/*for(int i = 0; i <= 4; i++) 
+		{
+			System.out.print(aux_array[i]+" ");
+		}*/
+		if (aux_array[5] == true)
+		{
+			for(int i = 4; i >= 0; i--) 
 			{
-				for(int i = 0; i<5; i++)
+				//System.out.print(i);
+				if (aux_array[i])
 				{
-					if(aux_array[i])
+					values[trueCounter] = hand.get(i).rank();
+					//System.out.println("=True= "+hand.get(i).rank());
+					trueCounter++;
+					if(!foundFirst)
 					{
-						if(hand.get(i).rank() > 10);
-						{
-							return returnArray;
-						}
+						foundFirst = true;
+					}
+					
+					if(hand.get(i).rank() > 10)
+					{
+						highCounter++;
+					}
+					
+					if(trueCounter == 3)
+					{
+						break;
 					}
 				}
-				
-				return returnArray;
+			 }
+			
+			Arrays.sort(values);
+			for(int i = 0; i < 2; i++) 
+			{
+				if(values[i+1] != (values[i]+1))
+				{
+					gapCounter = gapCounter + (values[i+1]-values[i]-1);
+				}
+			}
+			
+			System.out.println("\nGaps: "+gapCounter+"	HighCards: "+highCounter);
+			
+			
+			if(gapCounter == 2 && highCounter == 0)
+			{
+				return aux_array;
 			}
 			
 			else return returnArray;
+
 		}
-	
+		
+		else return returnArray;
+	}	
 	
 	//28
 	private boolean[] KQorKJUnsuited(Hand hand) {
@@ -1636,7 +1698,7 @@ public String[]  getHandValue(Hand hand, int bet) {
 			return returnArray;
 		for (int i = 0; i < 5; i++) {
 			if(fourToAnInsideStraight[i]) {
-				if(hand.get(i).rank()<10) highCardCounter++;
+				if(hand.get(i).rank()>10) highCardCounter++;
 			}
 		}
 		
@@ -1675,9 +1737,103 @@ public String[]  getHandValue(Hand hand, int bet) {
 		boolean[] returnArray = new boolean[6];
 		Arrays.fill(returnArray, false);
 		ArrayList<Card> sortedHand = sortByRank(hand);
-		int lastRank=0;
-		int indexToBegin=0;
-		
+
+
+		int counter = 0;
+		if(sortedHand.get(4).rank()==14) {
+			
+			//testar JQKA, TQKA, TJKA ou TJQA
+			for(int testRank = 13; testRank>9 ;testRank--){
+				for (int i = 0 ; i < 4; i++){
+					if(sortedHand.get(i).rank() == testRank){
+						returnArray[sortedHandIndexes[i]]=true;
+						counter++;
+						break;
+					}
+				}
+			}
+			if(counter >=3){
+				returnArray[5]=true;
+				returnArray[sortedHandIndexes[4]]=true;
+				return returnArray;
+			}
+			else{
+				counter = 0;
+				Arrays.fill(returnArray,false);
+			}
+
+
+			//testar A234, A345, A245 ou A235
+			for(int testRank = 2; testRank<6 ;testRank++){
+				for (int i = 0 ; i < 4; i++){
+					if(sortedHand.get(i).rank() == testRank){
+						returnArray[sortedHandIndexes[i]]=true;
+						counter++;
+						break;
+					}
+				}
+			}
+			if(counter >=3){
+				returnArray[5]=true;
+				returnArray[sortedHandIndexes[4]]=true;
+				return returnArray;
+			}
+			else{
+				counter = 0;
+				Arrays.fill(returnArray,false);
+			}
+		}else{
+
+			//testar n n+1 n+2 n+3;    n n+2 n+3 n+4; n n+1 n+3 n+4; n n+1 n+2 n+4
+			int n = sortedHand.get(0).rank();
+			for(int testRank = n; testRank<=(n+4) ;testRank++){
+				for (int i = 1 ; i < 5; i++){
+					if(sortedHand.get(i).rank() == testRank){
+						returnArray[sortedHandIndexes[i]]=true;
+						counter++;
+						break;
+					}
+				}
+			}
+			if(counter >=3){
+				returnArray[5]=true;
+				returnArray[sortedHandIndexes[0]]=true;
+				return returnArray;
+			}
+			else{
+				counter = 0;
+				Arrays.fill(returnArray,false);
+			}
+
+
+						//testar n n+1 n+2 n+3;    n n+2 n+3 n+4; n n+1 n+3 n+4; n n+1 n+2 n+4
+			n = sortedHand.get(4).rank();
+			for(int testRank = n; testRank>=(n-4) ;testRank--){
+				for (int i = 0 ; i < 4; i++){
+					if(sortedHand.get(i).rank() == testRank){
+						returnArray[sortedHandIndexes[i]]=true;
+						counter++;
+						break;
+					}
+				}
+			}
+			if(counter >=3){
+				returnArray[5]=true;
+				returnArray[sortedHandIndexes[4]]=true;
+				return returnArray;
+			}
+			else{
+				counter = 0;
+				Arrays.fill(returnArray,false);
+			}
+		}
+		return returnArray;
+
+
+
+
+
+		/*
 		if(sortedHand.get(4).rank()==14) 
 		{
 			if(sortedHand.get(3).rank()==13 || sortedHand.get(3).rank()==5) 
@@ -1715,12 +1871,11 @@ public String[]  getHandValue(Hand hand, int bet) {
 		else return returnArray;
 		
 		return returnArray;
-
+*/
 	}
 
 
 	private boolean[] threeToStraightFlush(Hand hand) {
-		
 		boolean[] returnArray = new boolean[6];
 		Arrays.fill(returnArray, false);
 		ArrayList<Card> sortedHand = sortByRank(hand);
@@ -1731,13 +1886,13 @@ public String[]  getHandValue(Hand hand, int bet) {
 		 {
 			 counter = 0;
 			 
-			 if(sortedHand.get(i).rank() == 14)
+			 if(sortedHand.get(4).rank() == 14)
 			 {
 				for(int j = 0; j < 5; j++)
 				{ 
 					if(5 - sortedHand.get(j).rank() >= 0)
 					{
-						if(sortedHand.get(i).suit() == sortedHand.get(j).suit())
+						if(sortedHand.get(4).suit() == sortedHand.get(j).suit())
 						 {
 							returnArray[sortedHandIndexes[i]]=true;
 							returnArray[sortedHandIndexes[j]]=true;
@@ -1751,33 +1906,37 @@ public String[]  getHandValue(Hand hand, int bet) {
 						}
 					}
 				}
+				counter = 0;
+				Arrays.fill(returnArray, false);
 			 }
-			 else 
-			 { 
-				 for(int j = i-1; j >= 0; j--)
+			 
+			 for(int j = i-1; j >= 0; j--)
+			 {
+				
+				 if(sortedHand.get(i).rank() - sortedHand.get(j).rank() <= 4)
 				 {
-					
-					 if(sortedHand.get(i).rank() - sortedHand.get(j).rank() <= 4)
+					 if(sortedHand.get(i).suit() == sortedHand.get(j).suit())
 					 {
-						 if(sortedHand.get(i).suit() == sortedHand.get(j).suit())
-						 {
-							returnArray[sortedHandIndexes[i]]=true;
-							returnArray[sortedHandIndexes[j]]=true;
-							counter++;
-						 }
-	
-						if (counter == 2)
-						{
-							returnArray[5] = true;
-							return returnArray;
-						}
+						/*System.out.println("In:"+sortedHand.get(i).rank()+sortedHand.get(i).suit()+"	Add: "
+								+sortedHand.get(j).rank()+sortedHand.get(j).suit());*/
+						returnArray[sortedHandIndexes[i]]=true;
+						returnArray[sortedHandIndexes[j]]=true;
+						counter++;
+					 }
+
+					if (counter == 2)
+					{
+						//System.out.println("Out:"+sortedHand.get(i).rank()+sortedHand.get(i).suit());
+						returnArray[5] = true;
+						return returnArray;
 					}
-				 }
-			 	counter = 0;
+				}
 			 }
+		 	counter = 0;
 			Arrays.fill(returnArray, false);
 		}
 		 return returnArray;
+
 	}
 
 

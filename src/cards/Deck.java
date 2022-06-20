@@ -12,7 +12,7 @@ public class Deck {
 	int deck_pointer = 0;
 	
 	public Deck(String fileName) {
-		System.out.println(fileName);
+		System.out.println("\n"+fileName);
 		String curr_line;
 		String[] parts;
 		File file_cmd = new File( "../Decks/" + fileName);
