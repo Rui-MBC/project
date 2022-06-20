@@ -4,11 +4,16 @@
 package main;
 import gamePlay.*;
 /**
- * @author ruimbc
- *
+ * @author Group 46
+ * 
+ * Main Class to run the application
  */
 public class Main {
-	
+	/**
+	 * Main function
+	 * @param args Input arguments of application
+	 *
+	 */
 	public static void main(String[] args) {
 		
 		Game game = null;

@@ -6,14 +6,22 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import cards.*;
-
+/**
+ * @author Group 46
+ * 
+ * Debug game mode
+ */
 
 public class Debug implements Game {
 	
 	private Player player ;
 	private GameInstance instance;
 	private String commandFileName;
-	
+	/**
+	 * Debug constructor
+	 * Initialize the Player, GameInstance and get the command's file name
+	 * @param args Input arguments of application
+	 */
 	public Debug(String[] args) {
 		instance = new GameInstance(args[3],Integer.parseInt(args[1]));
 		player = new Player(Integer.parseInt(args[1]));
@@ -21,11 +29,10 @@ public class Debug implements Game {
 	}
 
 	/**
-	 *
+	 * Plays the game in Debug Mode
 	 */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		String curr_line;
 		String[] parts;
 		int i = 0;
@@ -53,14 +60,12 @@ public class Debug implements Game {
 		
 		for ( i = 0; i < parts.length; i++)
 		{
-			
 			if (parts[i].contains("b"))
-			{
-
-				
+			{			
 				if ( lastCmd.contains("d"))
 				{
 					System.out.println("b: illegal command");
+					continue;
 				}
 				
 				else
@@ -98,9 +103,10 @@ public class Debug implements Game {
 			{
 
 
-				if (/*!lastCmd.contains("z") ||*/ !lastCmd.contains("b"))
+				if (!lastCmd.contains("b"))
 				{
 					System.out.println("d: illegal command");
+					continue;
 				}
 				else 
 				{
@@ -122,14 +128,21 @@ public class Debug implements Game {
 				else
 				{
 					Arrays.fill(hold_aux, false); //reset hold array
+					hold_amount = 0;
 					//System.out.println("Hold");
 					for (j=1; j < 6; j++)
 					{
-						if(i+j <parts.length && parts[i+j].matches("^[0-9]+$"))
+						if(i+j <parts.length)
 						{
-							//System.out.println(parts[i+j]);
-							hold_aux[Integer.parseInt(parts[i+j])-1] = false;
-							hold_amount++;
+							if (parts[i+j].matches("^[0-9]+$"))
+							{
+								//System.out.println(parts[i+j]);
+								hold_aux[Integer.parseInt(parts[i+j])-1] = true;
+								hold_amount++;
+							}
+							
+							else break;
+
 						}
 						else
 						{
@@ -151,10 +164,10 @@ public class Debug implements Game {
 					else
 					{
 						player.addcredit(Integer.parseInt(result_aux[0]));
-						System.out.println("player wins with a" + result_aux[1] + " and his credit is" + player.credit());
+						System.out.println("player wins with a " + result_aux[1] + " and his credit is " + player.credit()+"\n");
 					}
 						
-					lastCmd = "d";
+					lastCmd = "h";
 				}
 				
 			}
@@ -166,9 +179,9 @@ public class Debug implements Game {
 				//call advice method
 				hold_aux = instance.advice(player.getHandObject());
 				hold_flag = 0;
-				for(i=0; i<5; i++)
+				for(j=0; j<5; j++)
 				{
-					if(hold_aux[i])
+					if(hold_aux[j])
 					{
 						hold_flag = 1;
 						break;
@@ -182,11 +195,11 @@ public class Debug implements Game {
 				else
 				{
 					System.out.print("player should hold cards ");
-					for(i=0; i<5; i++)
+					for(j=0; j<5; j++)
 					{
-						if(hold_aux[i])
+						if(hold_aux[j])
 						{
-							System.out.print((i+1)+" ");
+							System.out.print((j+1)+" ");
 						}
 					}
 					
@@ -201,7 +214,7 @@ public class Debug implements Game {
 				System.out.println(instance.statistics(player.credit(),player.getBetSum()));
 			}
 			
-			else if (parts[i].contains(".*[a-zA-Z].*"))
+			else if (parts[i].contains(".[a-zA-Z]."))
 			{
 				System.out.println(parts[i].toString()+": invalid command");
 			}

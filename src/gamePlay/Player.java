@@ -55,7 +55,7 @@ public class Player {
 	}
 	
 	public void printHand() {
-		System.out.print("player's hand " + hand.toString());	
+		System.out.println("player's hand " + hand.toString());	
 	}
 	
 	public void printBet() {
