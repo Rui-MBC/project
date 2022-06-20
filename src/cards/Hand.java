@@ -23,12 +23,13 @@ public class Hand {
 	}
 	
 	public void _setHand(ArrayList<Card> cards,boolean hold_bool[]) {
-		
+		int deal_cards_counter = 0;
 		for (int i=0;i<5;i++)
 		{
 			if (!hold_bool[i])
 			{
-				handCards.set(i, cards.get(i));
+				handCards.set(i, cards.get(deal_cards_counter));
+				deal_cards_counter++;
 			}
 				
 		}
